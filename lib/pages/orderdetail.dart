@@ -1,0 +1,370 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_k_chart/flutter_k_chart.dart';
+import 'package:flutter_k_chart/utils/data_util.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutterapp2/net/HttpManager.dart';
+import 'package:flutterapp2/net/ResultData.dart';
+import 'package:flutterapp2/pages/hangqing/StockRankList.dart';
+import 'package:flutterapp2/pages/myorder.dart';
+import 'package:flutterapp2/utils/request.dart';
+
+import 'ChildItemView.dart';
+class orderdetail extends StatefulWidget{
+  int id;
+  int type = 1;
+  String f_or_b;
+  orderdetail(this.id,this.type,this.f_or_b);
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return new hangqing_();
+  }
+
+}
+class hangqing_ extends State<orderdetail>{
+  Map game ={};
+  Map order= {};
+  Map num_to_cn = {"1":"一","2":"二","3":"三","4":"四","5":"五","6":"六","7":"末"};
+  @override
+  void initState() {
+    super.initState();
+    getOrderDetail();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(width: 417, height: 867)..init(context);
+
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        title: Text(widget.type==1?"普通投注详情":"跟单投注详情",style: TextStyle(fontSize: ScreenUtil().setSp(18)),),
+        backgroundColor: Color(0xfffa2020),
+
+      ),
+
+      body: Column(
+        children: <Widget>[
+            Expanded(
+              child: ListView(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.all(10),
+                     decoration: BoxDecoration(color: Colors.white),
+                    child: Wrap(
+                      spacing: 20,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+
+                      children: <Widget>[
+                        Text(widget.f_or_b == "f"?"竞彩足球":"竞彩篮球",style: TextStyle(fontWeight:FontWeight.bold),),
+                        Text(DateTime.now().year.toString()+"期")
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 5,bottom: 5),
+                    decoration: BoxDecoration(color: Colors.white),
+                   width: double.infinity,
+                    margin: EdgeInsets.only(top: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          direction: Axis.vertical,
+                          children: <Widget>[
+                            Text("订单金额"),
+                            Text(order["amount"].toString()+".00元"),
+                          ],
+                        ),
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          direction: Axis.vertical,
+                          children: <Widget>[
+                            Text("订单状态"),
+                            Text(order["state"]==0?"未开奖":order["state"]==1?"未中奖":"中奖",style: TextStyle(color: Colors.red),),
+                          ],
+                        ),
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          direction: Axis.vertical,
+                          children: <Widget>[
+                            Text("奖金"),
+                            Text(order["state"]==2?order["award_money"].toString():"--",style: TextStyle(color: Colors.red),),
+                          ],
+                        ),
+
+                      ],
+                    ),
+                  ),
+
+                  Container(
+                    margin: EdgeInsets.only(top: 5,left: 5,bottom: 5),
+                    child: Wrap(
+                      spacing: 5,
+                      children: <Widget>[
+                        Text("投注信息: "),
+                        Text("2场",style: TextStyle(color: Colors.red),),
+                        Text("1倍",style: TextStyle(color: Colors.red),),
+                      ],
+                    ),
+                  ),
+                  Container(
+
+                    child: ExpansionTile(
+
+                      backgroundColor:Colors.white,
+                      initiallyExpanded:true,
+                      title: Text("选号详情",style: TextStyle(fontSize: 12),),
+                      children: <Widget>[
+
+                        Container(
+                          padding: EdgeInsets.only(left: ScreenUtil().setWidth(10),top: 5,bottom: 5),
+                          decoration: BoxDecoration(color: Color(0xfffff5f8)),
+                          width: ScreenUtil().setWidth(410),
+                          child: Row(
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           children: <Widget>[
+                            Container(
+                              width: ScreenUtil().setWidth(60),
+                              child: Text("场次"),
+                            ),
+                            Container(
+                              width: ScreenUtil().setWidth(105),
+                              child: Text("主队VS客队"),
+                            ),
+                            Container(
+                              width: ScreenUtil().setWidth(65),
+                              child: Text("玩法"),
+                            ),
+                            Container(
+                              width: ScreenUtil().setWidth(95),
+                              child: Text("投注"),
+                            ),
+                            Container(
+                              width: ScreenUtil().setWidth(60),
+                              child: Text("彩果"),
+                            )
+                          ],
+                        ),),
+                        Container(
+                          width: ScreenUtil().setWidth(410),
+                          child: Column(
+                            children: getList(),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 5,top: 5),
+                    child: Wrap(
+                      spacing: 5,
+                      direction: Axis.vertical,
+                      children: <Widget>[
+                        Text("下单时间:"+order["dtime"].toString()),
+                        Text("订单编号:"+order["order_no"].toString()),
+                        order["chuan"].toString() != ""? Text("过关方式:"+order["chuan"].toString()+"串1"):Text("过关方式:单关"),
+                        Text("温馨提示:"+"中奖后奖金自动打入您的账户"),
+
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+
+        ],
+      ),
+    );
+  }
+ List getList(){
+    String keys;
+    String week ;
+    String order_no ;
+    String h_name ;
+    String a_name ;
+    String bifen ;
+    int num;
+    return game.keys.map((e){
+      Map s = game[e];
+      num = 0;
+      s.forEach((key, value) {
+         week = s[key][0]["time"].toString().substring(0,1);
+         order_no = s[key][0]["time"].toString().substring(1,4);
+         h_name = s[key][0]["h_name"].toString();
+         a_name = s[key][0]["a_name"].toString();
+         bifen = s[key][0]["bifen"].toString();
+         List z = s[key];
+
+         z.forEach((element) {
+           num++;
+         });
+
+      });
+  int height = num*65;
+
+    return  Container(
+
+
+      decoration: BoxDecoration(border:Border(top: BorderSide(width: 0.1),right: BorderSide(width: 0.1),left: BorderSide(width: 0.1),bottom:BorderSide(width: 0.1))),
+
+      child: Row(
+
+        crossAxisAlignment: CrossAxisAlignment.center,
+
+        children: <Widget>[
+
+              Container(
+                height: ScreenUtil().setHeight(height),
+                decoration: BoxDecoration(border:Border(right: BorderSide(width: 0.1))),
+                alignment: Alignment.center,
+                width: ScreenUtil().setWidth(60),
+
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text("周"+num_to_cn[week]),
+                    Text(order_no),
+                  ],
+                ),
+              ),
+
+
+          Container(
+            height: ScreenUtil().setHeight(height),
+            decoration: BoxDecoration(border:Border(right: BorderSide(width: 0.1))),
+
+            alignment: Alignment.center,
+            width: ScreenUtil().setWidth(105),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+               Text(h_name,style: TextStyle(fontSize: ScreenUtil().setSp(13),height: 1.2),),
+                Text(bifen,style: TextStyle(fontSize: ScreenUtil().setSp(13),height: 1.2)),
+                Text(a_name,style: TextStyle(fontSize: ScreenUtil().setSp(13),height: 1.2)),
+              ],
+            ),
+          ),
+          Container(
+
+
+            alignment: Alignment.center,
+            child: Column(
+
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: getRow(s,height),
+            ),
+          ),
+
+
+        ],
+      ),
+    );
+    }).toList();
+  }
+ List<Widget> getRow(Map s,int heights){
+     String p_goal;
+     String rf = "-500";
+     bool is_right = false;
+     return s.keys.map((e){
+       List ls = s[e];
+       ls.forEach((element) {
+         if(element["ret"] == 1){
+           is_right = true;
+         }
+       });
+       p_goal = ls[0]["p_goal"];
+
+       List pg = p_goal.toString().split(",");
+       List meth_id = ls[0]["method_id"].toString().split("-");
+
+
+       if(order["type"] == "f"){
+         if(meth_id[0] == "2"){
+           if(pg.length == 1){
+              rf = pg[0];
+
+           }else{
+             rf = pg[1];
+
+           }
+         }else{
+           rf = "-500";
+         }
+       }else{
+         if(meth_id[0] == "2"){
+           rf = pg[1];
+         }else if(meth_id[0] == "5"){
+           rf = pg[3];
+         }else{
+           rf = "-500";
+         }
+       }
+
+      return Container(
+        decoration: BoxDecoration(border:Border(bottom: BorderSide(width: 0.1))),
+        child: Row(
+           crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+
+
+              alignment: Alignment.center,
+              width: ScreenUtil().setWidth(65),
+              child: Column(
+                children: <Widget>[
+                  Text(e.toString()),
+                  rf!="-500"?Text("("+ rf + ")"):Container()
+                ],
+              ),
+            ),
+            Container(
+              width: ScreenUtil().setWidth(95),
+
+              alignment: Alignment.center,
+              child: Column(
+
+                children: ls.asMap().keys.map((e2){
+                  return Container(
+                    decoration: BoxDecoration(border:Border(bottom: ls.length!=1?BorderSide(width: 0.1):BorderSide(width: 0.1),right: BorderSide(width: 0.1),left: BorderSide(width: 0.1))),
+                    height: ScreenUtil().setHeight(65),
+                    alignment: Alignment.center,
+
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(ls[e2]["bet_value"].toString()),
+                        Text(ls[e2]["pl"].toString()),
+
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              width: ScreenUtil().setWidth(84),
+              child: Text(ls[0]["caiguo"].toString(),style: TextStyle(color: is_right==true?Colors.red:Colors.grey),),
+            ),
+
+          ],
+        ),
+      );
+     }).toList();
+  }
+  getOrderDetail() async {
+    ResultData res = await HttpManager.getInstance().get("getOrderDetail",params: {"id":widget.id},withLoading: false);
+
+    setState(() {
+      game = res.data["detail"];
+      order = res.data["order"];
+    });
+  }
+}
