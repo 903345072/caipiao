@@ -9,7 +9,7 @@ import 'package:flutterapp2/pages/editCard.dart';
 import 'package:flutterapp2/pages/hangqing.dart';
 import 'package:flutterapp2/pages/heyue.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
-import 'package:flutterapp2/utils/Router.dart';
+import 'package:flutterapp2/utils/Rute.dart';
 import 'package:flutterapp2/utils/Toast.dart';
 void main() {
   runApp( new BotomeMenumPage());
@@ -41,13 +41,13 @@ class BotomeMenumPageState extends State<BotomeMenumPage> with SingleTickerProvi
     var is_login = await TokenStore().getToken("is_login");
 
     if((index == 1 && is_login == null) || (index == 1 && is_login == "0")){
-      Router.navigatorKey.currentState.pushNamedAndRemoveUntil("/login",
+      Rute.navigatorKey.currentState.pushNamedAndRemoveUntil("/login",
           ModalRoute.withName("/"));
       return;
     }
 
     if((index == 3 && is_login == null) || (index == 3 && is_login == "0")){
-      Router.navigatorKey.currentState.pushNamedAndRemoveUntil("/login",
+      Rute.navigatorKey.currentState.pushNamedAndRemoveUntil("/login",
           ModalRoute.withName("/"));
       return;
     }
@@ -89,7 +89,7 @@ class BotomeMenumPageState extends State<BotomeMenumPage> with SingleTickerProvi
     ];
 
     return MaterialApp( //注意这里
-      navigatorKey: Router.navigatorKey, //设置在这里
+      navigatorKey: Rute.navigatorKey, //设置在这里
         routes:{
           "/login":(context) => Login(), //注册首页路由
           "/index":(context)=>IndexPage(),

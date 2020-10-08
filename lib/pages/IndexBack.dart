@@ -11,7 +11,7 @@ import 'package:flutterapp2/net/ResultData.dart';
 import 'package:flutterapp2/pages/article.dart';
 import 'package:flutterapp2/pages/floworder.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
-import 'package:flutterapp2/utils/Router.dart';
+import 'package:flutterapp2/utils/Rute.dart';
 import 'package:flutterapp2/wiget/CommonWiget.dart';
 import 'package:marquee_flutter/marquee_flutter.dart';
 import 'package:flutterapp2/SharedPreferences/TokenStore.dart';
@@ -50,13 +50,13 @@ class _IndexPage extends State<IndexBack> with SingleTickerProviderStateMixin , 
     var is_login = await TokenStore().getToken("is_login");
 
     if((index == 1 && is_login == null) || (index == 1 && is_login == "0")){
-      Router.navigatorKey.currentState.pushNamedAndRemoveUntil("/login",
+      Rute.navigatorKey.currentState.pushNamedAndRemoveUntil("/login",
           ModalRoute.withName("/"));
       return;
     }
 
     if((index == 3 && is_login == null) || (index == 3 && is_login == "0")){
-      Router.navigatorKey.currentState.pushNamedAndRemoveUntil("/login",
+      Rute.navigatorKey.currentState.pushNamedAndRemoveUntil("/login",
           ModalRoute.withName("/"));
       return;
     }

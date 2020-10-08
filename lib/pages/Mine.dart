@@ -19,7 +19,7 @@ import 'package:flutterapp2/pages/orderlist.dart';
 import 'package:flutterapp2/pages/stock.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
-import 'package:flutterapp2/utils/Router.dart';
+import 'package:flutterapp2/utils/Rute.dart';
 import 'package:flutterapp2/utils/Toast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'heyue.dart';

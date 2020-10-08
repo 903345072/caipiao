@@ -11,7 +11,7 @@ import 'package:flutterapp2/net/ResultData.dart';
 import 'package:flutterapp2/pages/IndexPage.dart';
 import 'package:flutterapp2/pages/Mine.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
-import 'package:flutterapp2/utils/Router.dart';
+import 'package:flutterapp2/utils/Rute.dart';
 import 'package:flutterapp2/utils/Toast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

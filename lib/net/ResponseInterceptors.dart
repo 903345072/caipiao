@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutterapp2/SharedPreferences/TokenStore.dart';
 import 'package:flutterapp2/pages/Login.dart';
-import 'package:flutterapp2/utils/Router.dart';
+import 'package:flutterapp2/utils/Rute.dart';
 import 'package:flutterapp2/utils/Toast.dart';
 import '../main.dart';
 import 'ResultData.dart';
@@ -29,7 +29,7 @@ class ResponseInterceptors extends InterceptorsWrapper {
 
               TokenStore().setToken("is_login", "0");
 
-              Router.navigatorKey.currentState.pushNamedAndRemoveUntil("/login",
+              Rute.navigatorKey.currentState.pushNamedAndRemoveUntil("/login",
               ModalRoute.withName("/"));
         } else {
           return new ResultData(response.data["data"], false,code, response.data["msg"]);

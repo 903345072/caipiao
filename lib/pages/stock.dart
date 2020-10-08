@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp2/SharedPreferences/TokenStore.dart';
 import 'package:flutterapp2/pages/trade/trade.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
-import 'package:flutterapp2/utils/Router.dart';
+import 'package:flutterapp2/utils/Rute.dart';
 import 'package:flutterapp2/utils/request.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_k_chart/entity/k_line_entity.dart';
@@ -343,7 +343,7 @@ class _stock extends State<stock>{
                       onTap: () async {
                         var is_login = await TokenStore().getToken("is_login");
                         if(is_login == null || is_login == "0"){
-                          Router.navigatorKey.currentState.pushNamedAndRemoveUntil("/login",
+                          Rute.navigatorKey.currentState.pushNamedAndRemoveUntil("/login",
                               ModalRoute.withName("/"));
                           return;
                         }
