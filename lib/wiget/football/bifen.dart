@@ -259,7 +259,7 @@ getScore(){
                                           child: Stack(
                                             children: <Widget>[
                                               Icon(
-                                                IconData(0xe606,
+                                                const IconData(0xe606,
                                                     fontFamily:
                                                     "iconfont"),
                                                 color: Colors.red,
@@ -290,7 +290,7 @@ getScore(){
                                         Stack(
                                           children: <Widget>[
                                             Icon(
-                                              IconData(0xe606,
+                                              const IconData(0xe606,
                                                   fontFamily:
                                                   "iconfont"),
                                               color: Colors.blue,

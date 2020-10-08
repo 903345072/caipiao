@@ -76,7 +76,7 @@ class Login_ extends State<kefu> {
 
                       children: <Widget>[
                         Text("在线客服:"),
-                        Icon(IconData(0xe611,fontFamily: "iconfont"),color: Colors.red,),
+                        Icon(const IconData(0xe611,fontFamily: "iconfont"),color: Colors.red,),
                         Container(
                           padding: EdgeInsets.only(left: 5,right: 5,top: 5,bottom: 5),
                           //decoration: BoxDecoration(color:Color(0xfffa2020),borderRadius: BorderRadius.all(Radius.circular(10))),

@@ -332,7 +332,7 @@ class _stock extends State<stock>{
                       spacing: 3,
                       children: <Widget>[
                         Icon(
-                          IconData(0xe621, fontFamily: 'iconfont'),
+                          const IconData(0xe621, fontFamily: 'iconfont'),
                           size:22,
                           color: Colors.black,
                         ),

@@ -512,7 +512,7 @@ class _ChildState extends State<basketballMix> {
                                                     child: Stack(
                                                       children: <Widget>[
                                                         Icon(
-                                                          IconData(0xe606,
+                                                          const IconData(0xe606,
                                                               fontFamily:
                                                               "iconfont"),
                                                           color: Colors.red,
@@ -543,7 +543,7 @@ class _ChildState extends State<basketballMix> {
                                                   Stack(
                                                     children: <Widget>[
                                                       Icon(
-                                                        IconData(0xe606,
+                                                        const IconData(0xe606,
                                                             fontFamily:
                                                             "iconfont"),
                                                         color: Colors.blue,

@@ -69,15 +69,15 @@ class BotomeMenumPageState extends State<BotomeMenumPage> with SingleTickerProvi
         title: Text("购彩",),
       ),
       BottomNavigationBarItem(
-      activeIcon: Icon(IconData(0xe609, fontFamily: 'iconfont'),color: Color(0xfffa2020)),
+      activeIcon: Icon(const IconData(0xe609, fontFamily: 'iconfont'),color: Color(0xfffa2020)),
         backgroundColor: Colors.black,
-        icon: Icon(IconData(0xe609, fontFamily: 'iconfont')),
+        icon: Icon(const IconData(0xe609, fontFamily: 'iconfont')),
         title: Text("跟单"),
       ),
       BottomNavigationBarItem(
-        activeIcon: Icon(IconData(0xe621, fontFamily: 'iconfont'),color: Color(0xfffa2020),),
+        activeIcon: Icon(const IconData(0xe621, fontFamily: 'iconfont'),color: Color(0xfffa2020),),
         backgroundColor: Colors.black,
-        icon: Icon(IconData(0xe621, fontFamily: 'iconfont')),
+        icon: Icon(const IconData(0xe621, fontFamily: 'iconfont')),
         title: Text("开奖"),
       ),
       BottomNavigationBarItem(

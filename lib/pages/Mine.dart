@@ -298,7 +298,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                               crossAxisAlignment: WrapCrossAlignment.center,
                               children: <Widget>[
                                 Container(
-                                  child: Icon(IconData(0xe603,fontFamily: "iconfont"),size: 17,),
+                                  child: Icon(const IconData(0xe603,fontFamily: "iconfont"),size: 17,),
                                 ),
                                 Container(
                                   child: Text("资料",style: TextStyle(fontWeight: FontWeight.bold),),
@@ -317,7 +317,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                             crossAxisAlignment: WrapCrossAlignment.center,
                             children: <Widget>[
                               Container(
-                                child: Icon(IconData(0xe671,fontFamily: "iconfont"),color: Colors.blue,size: 30,),
+                                child: Icon(const IconData(0xe671,fontFamily: "iconfont"),color: Colors.blue,size: 30,),
                               ),
                               Container(
                                 child: Text("中奖",style: TextStyle(fontWeight: FontWeight.bold),),
@@ -349,7 +349,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                             crossAxisAlignment: WrapCrossAlignment.center,
                             children: <Widget>[
                               Container(
-                                child: Icon(IconData(0xe60a,fontFamily: "iconfont"),color: Colors.red,size: 17,),
+                                child: Icon(const IconData(0xe60a,fontFamily: "iconfont"),color: Colors.red,size: 17,),
                               ),
                               Container(
                                 child: Text("订单",style: TextStyle(fontWeight: FontWeight.bold),),
@@ -369,7 +369,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                             crossAxisAlignment: WrapCrossAlignment.center,
                             children: <Widget>[
                               Container(
-                                child: Icon(IconData(0xe607,fontFamily: "iconfont"),color: Colors.deepOrange,size: 15,),
+                                child: Icon(const IconData(0xe607,fontFamily: "iconfont"),color: Colors.deepOrange,size: 15,),
                               ),
                               Container(
                                 child: Text("账单",style: TextStyle(fontWeight: FontWeight.bold),),
@@ -397,7 +397,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                           crossAxisAlignment: WrapCrossAlignment.center,
                           children: <Widget>[
                             Container(
-                              child: Icon(IconData(0xe605,fontFamily: "iconfont"),size: 17,),
+                              child: Icon(const IconData(0xe605,fontFamily: "iconfont"),size: 17,),
                             ),
 
                             GestureDetector(
@@ -419,7 +419,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                             crossAxisAlignment: WrapCrossAlignment.center,
                             children: <Widget>[
                               Container(
-                                child: Icon(IconData(0xe602,fontFamily: "iconfont"),color: Colors.blue,size: 18,),
+                                child: Icon(const IconData(0xe602,fontFamily: "iconfont"),color: Colors.blue,size: 18,),
                               ),
                               Container(
                                 child: Text("客服",style: TextStyle(fontWeight: FontWeight.bold),),
@@ -446,7 +446,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                           crossAxisAlignment: WrapCrossAlignment.center,
                           children: <Widget>[
                             Container(
-                              child: Icon(IconData(0xe6b1,fontFamily: "iconfont"),color: Colors.pinkAccent,size: 18,),
+                              child: Icon(const IconData(0xe6b1,fontFamily: "iconfont"),color: Colors.pinkAccent,size: 18,),
                             ),
                             Container(
                               child: Text("检查更新",style: TextStyle(fontWeight: FontWeight.bold),),
@@ -459,7 +459,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                           crossAxisAlignment: WrapCrossAlignment.center,
                           children: <Widget>[
                             Container(
-                              child: Icon(IconData(0xe604,fontFamily: "iconfont"),size: 18,),
+                              child: Icon(const IconData(0xe604,fontFamily: "iconfont"),size: 18,),
                             ),
                             GestureDetector(
                               onTap: () async {

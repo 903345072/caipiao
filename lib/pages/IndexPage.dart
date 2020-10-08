@@ -162,7 +162,7 @@ class _IndexPage extends State<IndexPage> with AutomaticKeepAliveClientMixin {
                   children: <Widget>[
                     Container(
                       child: Icon(
-                        IconData(0xe600, fontFamily: "iconfont"),
+                        const IconData(0xe600, fontFamily: "iconfont"),
                         color: Color(0xffa3a3a3),
                         size: ScreenUtil().setSp(32),
                       ),
