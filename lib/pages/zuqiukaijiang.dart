@@ -172,17 +172,14 @@ class Login_ extends State<zuqiukaijiang> {
 
                     alignment: Alignment.center,
                     width: ScreenUtil().setWidth(139),
-                    height: ScreenUtil().setHeight(180),
+
                     child: Wrap(
-
-                      spacing: 5,
-
-
                       crossAxisAlignment: WrapCrossAlignment.center,
                       direction: Axis.vertical,
                       children: <Widget>[
                         Container(
-
+                          alignment: Alignment.center,
+                          height: ScreenUtil().setHeight(36),
                           width: ScreenUtil().setWidth(139),
                           decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xfff2f2f2),width: 1))),
                           child: Wrap(
@@ -196,6 +193,8 @@ class Login_ extends State<zuqiukaijiang> {
                           ),
                         ),
                         Container(
+                          alignment: Alignment.center,
+                          height: ScreenUtil().setHeight(36),
                           width: ScreenUtil().setWidth(139),
                           decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xfff2f2f2),width: 1))),
 
@@ -210,6 +209,8 @@ class Login_ extends State<zuqiukaijiang> {
                           ),
                         ),
                         Container(
+                          alignment: Alignment.center,
+                          height: ScreenUtil().setHeight(36),
                           decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xfff2f2f2),width: 1))),
                           width: ScreenUtil().setWidth(139),
                           child: Wrap(
@@ -223,6 +224,8 @@ class Login_ extends State<zuqiukaijiang> {
                           ),
                         ),
                         Container(
+                          alignment: Alignment.center,
+                          height: ScreenUtil().setHeight(36),
                           decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xfff2f2f2),width: 1))),
                           width: ScreenUtil().setWidth(139),
 
@@ -236,14 +239,21 @@ class Login_ extends State<zuqiukaijiang> {
                             ],
                           ),
                         ),
-                        Wrap(
+                        Container(
+                          alignment: Alignment.center,
+                          height: ScreenUtil().setHeight(36),
+                          decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xfff2f2f2),width: 1))),
+                          width: ScreenUtil().setWidth(139),
 
-                          spacing: 25,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: <Widget>[
-                            Text(l[e1]["g5"]["res"]),
-                            Text(l[e1]["g5"]["pl"]),
-                          ],
+                          child: Wrap(
+                            alignment: WrapAlignment.center,
+                            spacing: 25,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: <Widget>[
+                              Text(l[e1]["g5"]["res"]),
+                              Text(l[e1]["g5"]["pl"]),
+                            ],
+                          ),
                         ),
                       ],
                     ),

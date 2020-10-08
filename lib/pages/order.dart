@@ -256,7 +256,7 @@ class order_ extends State<order> {
                                 alignment: Alignment.center,
                                 width: ScreenUtil().setWidth(220),
                                 child: Wrap(
-                                  spacing: 5,
+
                                   direction: Axis.vertical,
                                   alignment: WrapAlignment.center,
                                   crossAxisAlignment: WrapCrossAlignment.center,
@@ -267,11 +267,13 @@ class order_ extends State<order> {
                                           "注",
                                       style: TextStyle(
                                           color: Colors.red,
-                                          fontSize: ScreenUtil().setSp(18)),
+                                          fontSize: ScreenUtil().setSp(14)),
                                     ),
                                     Text(getMoney() + "元",
                                         style: TextStyle(
-                                            fontSize: ScreenUtil().setSp(18))),
+                                            fontSize: ScreenUtil().setSp(14))),
+                                    getNum().length>=1? getExpectAward():Container()
+
                                   ],
                                 ),
                               ),
@@ -466,10 +468,13 @@ class order_ extends State<order> {
     });
     min = min * num * 2;
     max = max * num * 2;
-    text = "预计奖金" + min.toStringAsFixed(2) + "~" + max.toStringAsFixed(2);
+    text = "预计奖金" + min.toStringAsFixed(2) + "~" + max.toStringAsFixed(2)+"元";
+    if(getNum().length == 1){
+      text = "预计奖金" + min.toStringAsFixed(2) +"元";
+    }
     return Text(
       text,
-      style: TextStyle(fontSize: ScreenUtil().setSp(12)),
+      style: TextStyle(fontSize: ScreenUtil().setSp(13)),
     );
   }
 
@@ -535,7 +540,7 @@ class order_ extends State<order> {
     List ars = [];
 
     chuan_.forEach((element4) {
-      plzh(zmax, element4, type: "m");
+      plzh(zz, element4, type: "m");
       List lss = plzh(zz, element4);
       lss.forEach((element5) {
         List lss2 = element5;

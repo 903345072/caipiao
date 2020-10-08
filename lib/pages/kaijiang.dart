@@ -96,12 +96,11 @@ getGameInfo() async {
                             direction: Axis.vertical,
                             children: <Widget>[
                               Wrap(
-
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 spacing: 15,
                                 children: <Widget>[
                                   Text("竞彩足球",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
-                                  foot.length>0?Text("比赛日："+ foot["dtime"].toString().substring(0,10)+ "(周"+num_to_cn[foot["num"].toString().substring(0,1)]+")"):Text("--")
+                                  foot.length>0?Text("比赛日："+ foot["dtime"].toString().substring(0,10)+ "(周"+foot["week"].toString()+")"):Text("--")
                                 ],
                               ),
                               Container(
@@ -149,7 +148,7 @@ getGameInfo() async {
             Divider(),
             GestureDetector(
               onTap: (){
-                //JumpAnimation().jump(lanqiukaijiang(), context);
+                JumpAnimation().jump(lanqiukaijiang(), context);
               },
               child: Container(
                 margin: EdgeInsets.only(bottom: 10,right: 10),
@@ -176,7 +175,7 @@ getGameInfo() async {
                                 spacing: 15,
                                 children: <Widget>[
                                   Text("竞彩篮球",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
-                                  foot.length>0? Text("比赛日："+ foot["dtime"].toString().substring(0,10)+ "(周"+num_to_cn[foot["num"].toString().substring(0,1)]+")"):Text("--")
+                                  foot.length>0? Text("比赛日："+ foot["dtime"].toString().substring(0,10)+ "(周"+foot["week"].toString()+")"):Text("--")
                                 ],
                               ),
                               Container(
@@ -187,7 +186,7 @@ getGameInfo() async {
                                       height: ScreenUtil().setHeight(50),
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(color: Colors.orangeAccent,borderRadius: BorderRadius.all(Radius.circular(25)) ),
-                                      child: basket.length>0?Text(basket["h_name"]  +"  "+  basket["bf"]+ "  "+  basket["a_name"]):Text("--"),
+                                      child: basket.length>0?Text(basket["a_name"]  +"  "+  basket["bf"]+ "  "+  basket["h_name"]):Text("--"),
                                     ),
                                     Positioned(
                                       left: -3,

@@ -42,13 +42,13 @@ class Login_ extends State<lanqiukaijiang> {
     _commentFocus = FocusNode();
     getFootBall();
   }
-   getFootBall() async {
-     ResultData res = await HttpManager.getInstance().get("getFootOpenGame",withLoading: false);
+  getFootBall() async {
+    ResultData res = await HttpManager.getInstance().get("getBasketOpenGame",withLoading: false);
 
-     setState(() {
-       list =res.data[0];
-     });
-   }
+    setState(() {
+      list =res.data[0];
+    });
+  }
   @override
   Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(width: 417, height: 867)..init(context);
@@ -131,13 +131,13 @@ class Login_ extends State<lanqiukaijiang> {
                     decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xfff2f2f2),width: 1),right: BorderSide(color: Color(0xfff2f2f2),width: 1))),
                     alignment: Alignment.center,
                     width: ScreenUtil().setWidth(139),
-                    height: ScreenUtil().setHeight(180),
+                    height: ScreenUtil().setHeight(144),
                     child: Wrap(
                       spacing: 3,
                       crossAxisAlignment: WrapCrossAlignment.center,
                       direction: Axis.vertical,
                       children: <Widget>[
-                        Text(l[e1]["l_cn_a"]),
+                        Text(l[e1]["l_cn_abbr"]),
                         Text("周"+num_to_cn[l[e1]["num"].toString().substring(0,1)]+l[e1]["num"].toString().substring(1,4)),
                         Text(l[e1]["dtime"].toString().substring(11,16))
                       ],
@@ -148,22 +148,23 @@ class Login_ extends State<lanqiukaijiang> {
 
                     alignment: Alignment.center,
                     width: ScreenUtil().setWidth(139),
-                    height: ScreenUtil().setHeight(180),
+                    height: ScreenUtil().setHeight(144),
                     child: Wrap(
                       spacing: 5,
                       crossAxisAlignment: WrapCrossAlignment.center,
                       direction: Axis.vertical,
                       children: <Widget>[
-                        Text(l[e1]["h_cn_a"]),
+                        Text(l[e1]["a_cn_abbr"]+"(客)"),
                         Wrap(
                           spacing: 15,
                           crossAxisAlignment: WrapCrossAlignment.center,
                           children: <Widget>[
                             Text(l[e1]["qcbf"],style: TextStyle(color: Colors.red),),
-                            Text("半"+l[e1]["bcbf"])
+                            Text("让分"+l[e1]["rq"])
                           ],
                         ),
-                        Text(l[e1]["a_cn_a"]),
+
+                        Text(l[e1]["h_cn_abbr"]+"(主)"),
                       ],
                     ),
                   ),
@@ -172,29 +173,35 @@ class Login_ extends State<lanqiukaijiang> {
 
                     alignment: Alignment.center,
                     width: ScreenUtil().setWidth(139),
-                    height: ScreenUtil().setHeight(180),
+
                     child: Wrap(
-
-                      spacing: 5,
-
                       crossAxisAlignment: WrapCrossAlignment.center,
                       direction: Axis.vertical,
                       children: <Widget>[
                         Container(
+                          alignment: Alignment.center,
+                          height: ScreenUtil().setHeight(36),
                           decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xfff2f2f2),width: 1))),
+                          width: ScreenUtil().setWidth(139),
+
                           child: Wrap(
+                            alignment: WrapAlignment.center,
                             spacing: 25,
                             crossAxisAlignment: WrapCrossAlignment.center,
                             children: <Widget>[
-                              Text(l[e1]["g1"]["res"]),
-                              Text(l[e1]["g1"]["pl"]),
+                              Text(l[e1]["g4"]["res"]),
+                              Text(l[e1]["g4"]["pl"]),
                             ],
                           ),
                         ),
                         Container(
+                          alignment: Alignment.center,
+                          height: ScreenUtil().setHeight(36),
+                          width: ScreenUtil().setWidth(139),
                           decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xfff2f2f2),width: 1))),
 
                           child: Wrap(
+                            alignment: WrapAlignment.center,
                             spacing: 25,
                             crossAxisAlignment: WrapCrossAlignment.center,
                             children: <Widget>[
@@ -204,9 +211,12 @@ class Login_ extends State<lanqiukaijiang> {
                           ),
                         ),
                         Container(
+                          alignment: Alignment.center,
+                          height: ScreenUtil().setHeight(36),
                           decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xfff2f2f2),width: 1))),
-
+                          width: ScreenUtil().setWidth(139),
                           child: Wrap(
+                            alignment: WrapAlignment.center,
                             spacing: 25,
                             crossAxisAlignment: WrapCrossAlignment.center,
                             children: <Widget>[
@@ -216,24 +226,19 @@ class Login_ extends State<lanqiukaijiang> {
                           ),
                         ),
                         Container(
+                          alignment: Alignment.center,
+                          height: ScreenUtil().setHeight(36),
+                          width: ScreenUtil().setWidth(139),
                           decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xfff2f2f2),width: 1))),
-
                           child: Wrap(
+                            alignment: WrapAlignment.center,
                             spacing: 25,
                             crossAxisAlignment: WrapCrossAlignment.center,
                             children: <Widget>[
-                              Text(l[e1]["g4"]["res"]),
-                              Text(l[e1]["g4"]["pl"]),
+                              Text(l[e1]["g1"]["res"]),
+                              Text(l[e1]["g1"]["pl"]),
                             ],
                           ),
-                        ),
-                        Wrap(
-                          spacing: 25,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: <Widget>[
-                            Text(l[e1]["g5"]["res"]),
-                            Text(l[e1]["g5"]["pl"]),
-                          ],
                         ),
                       ],
                     ),
