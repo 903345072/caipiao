@@ -115,10 +115,7 @@ class _ChildState extends State<rangqiu> {
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][1]["bet_way"][e]["color"] == "co"){
-              if(!attr.contains(widget.rqspf[e])){
                 attr.add(widget.rqspf[e]);
-              }
-
             }else{
               attr.remove(widget.rqspf[e]);
             }

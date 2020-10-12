@@ -18,13 +18,15 @@ import 'package:flutterapp2/pages/kefu.dart';
 import 'package:flutterapp2/pages/orderlist.dart';
 import 'package:flutterapp2/pages/stock.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterapp2/utils/EventDioLog.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
 import 'package:flutterapp2/utils/Rute.dart';
 import 'package:flutterapp2/utils/Toast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'heyue.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:package_info/package_info.dart';
 class Mine extends StatefulWidget {
   String _title;
 
@@ -448,8 +450,30 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                             Container(
                               child: Icon(const IconData(0xe6b1,fontFamily: "iconfont"),color: Colors.pinkAccent,size: 18,),
                             ),
-                            Container(
-                              child: Text("检查更新",style: TextStyle(fontWeight: FontWeight.bold),),
+                            GestureDetector(
+                              onTap: ()async{
+                                ResultData res = await HttpManager.getInstance().get("appversion",withLoading: true);
+                                String appversion = res.data["data"];
+                                 String version;
+                                PackageInfo packageInfo = await PackageInfo.fromPlatform();
+                                version = packageInfo.version;
+                                if(version != appversion){
+                                  const url = 'https://cos.app99.xin/dosuHN';
+                                  EventDioLog("提示","发现新版本,是否前往升级?",context,()async{
+                                    if (await canLaunch(url)) {
+                                    await launch(url);
+                                    } else {
+                                    throw 'Could not launch $url';
+                                    }
+                                  }).showDioLog();
+
+                                }else{
+                                  Toast.toast(context,msg: "已是最新版本");
+                                }
+                              },
+                              child: Container(
+                                child: Text("检查更新",style: TextStyle(fontWeight: FontWeight.bold),),
+                              ),
                             ),
 
                           ],

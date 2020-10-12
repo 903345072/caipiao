@@ -650,9 +650,9 @@ getsfList(state){
       if(checks[mid] != null){
         List attr = checks[mid];
         if(widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][0]["color"] == "co"){
-          if(!attr.contains(widget.sf[0])){
+
             attr.add(widget.sf[0]);
-          }
+
 
         }else{
           attr.remove(widget.sf[0]);
@@ -720,9 +720,8 @@ getsfList(state){
       if(checks[mid] != null){
         List attr = checks[mid];
         if(widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][1]["color"] == "co"){
-          if(!attr.contains(widget.sf[1])){
+
             attr.add(widget.sf[1]);
-          }
 
         }else{
           attr.remove(widget.sf[1]);
@@ -807,9 +806,9 @@ getrfList(state){
         if(checks[mid] != null){
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][1]["bet_way"][0]["color"] == "co"){
-            if(!attr.contains(widget.rfsf[0])){
+
               attr.add(widget.rfsf[0]);
-            }
+
 
           }else{
             attr.remove(widget.rfsf[0]);
@@ -877,9 +876,9 @@ getrfList(state){
         if(checks[mid] != null){
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][1]["bet_way"][1]["color"] == "co"){
-            if(!attr.contains(widget.rfsf[1])){
+
               attr.add(widget.rfsf[1]);
-            }
+
 
           }else{
             attr.remove(widget.rfsf[1]);
@@ -963,9 +962,9 @@ getdxfList(state){
         if(checks[mid] != null){
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][0]["color"] == "co"){
-            if(!attr.contains(widget.dxf[0])){
+
               attr.add(widget.dxf[0]);
-            }
+
 
           }else{
             attr.remove(widget.dxf[0]);
@@ -1032,9 +1031,9 @@ getdxfList(state){
         if(checks[mid] != null){
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][1]["color"] == "co"){
-            if(!attr.contains(widget.dxf[1])){
+
               attr.add(widget.dxf[1]);
-            }
+
 
           }else{
             attr.remove(widget.dxf[1]);
@@ -1120,9 +1119,9 @@ getzssfcList(state){
         if(checks[mid] != null){
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][2]["bet_way"][e]["color"] == "co"){
-            if(!attr.contains(widget.zs_sfc[e])){
+
               attr.add(widget.zs_sfc[e]);
-            }
+
 
           }else{
             attr.remove(widget.zs_sfc[e]);
@@ -1207,9 +1206,9 @@ getkssfcList(state){
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][3]["bet_way"][e]["color"] == "co"){
-              if(!attr.contains(widget.ks_sfc[e])){
+
                 attr.add(widget.ks_sfc[e]);
-              }
+
 
             }else{
               attr.remove(widget.ks_sfc[e]);
@@ -1293,10 +1292,7 @@ getrfList_() {
         if(checks[mid] != null){
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][1]["bet_way"][0]["color"] == "co"){
-            if(!attr.contains(widget.rfsf[0])){
               attr.add(widget.rfsf[0]);
-            }
-
           }else{
             attr.remove(widget.rfsf[0]);
           }
@@ -1356,9 +1352,9 @@ getrfList_() {
         if(checks[mid] != null){
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][1]["bet_way"][1]["color"] == "co"){
-            if(!attr.contains(widget.rfsf[1])){
+
               attr.add(widget.rfsf[1]);
-            }
+
 
           }else{
             attr.remove(widget.rfsf[1]);
@@ -1425,9 +1421,9 @@ getdxfList_() {
         if(checks[mid] != null){
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][0]["color"] == "co"){
-            if(!attr.contains(widget.dxf[0])){
+
               attr.add(widget.dxf[0]);
-            }
+
 
           }else{
             attr.remove(widget.dxf[0]);
@@ -1488,9 +1484,9 @@ getdxfList_() {
         if(checks[mid] != null){
           List attr = checks[mid];
           if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][1]["color"] == "co"){
-            if(!attr.contains(widget.dxf[1])){
+
               attr.add(widget.dxf[1]);
-            }
+
 
           }else{
             attr.remove(widget.dxf[1]);

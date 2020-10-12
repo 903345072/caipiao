@@ -100,7 +100,7 @@ class Login_ extends State<flowdetail> {
                           direction: Axis.vertical,
                           children: <Widget>[
                             Text("起跟金额"),
-                            Text("2元",style: TextStyle(fontWeight: FontWeight.bold),)
+                            Text((widget.data["num"]*2).toString()+"元",style: TextStyle(fontWeight: FontWeight.bold),)
                           ],
                         )
                       ],
@@ -144,7 +144,7 @@ class Login_ extends State<flowdetail> {
                                 margin: EdgeInsets.only(right: 15),
                                 child: Text("跟单信息:"),
                               ),
-                              Text("共"+widget.data["amount"]+"元",style: TextStyle(color: Colors.grey),)
+                              Text("共"+widget.data["all_amount"].toString()+"元",style: TextStyle(color: Colors.grey),)
                             ],
                           ),
                         ),

@@ -91,7 +91,7 @@ class order_ extends State<order> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Color(0xfffa2020),
-        title: Text("竞彩足球投足"),
+        title: Text("投注详情"),
       ),
       body: MediaQuery.removePadding(
           context: context,
@@ -450,7 +450,6 @@ class order_ extends State<order> {
 
     min_max.forEach((key, value) {
       List l1 = value;
-
       l1.forEach((element) {
         List l2 = element;
         if (l2.length > 0) {
@@ -472,6 +471,15 @@ class order_ extends State<order> {
     if(getNum().length == 1){
       text = "预计奖金" + min.toStringAsFixed(2) +"元";
     }
+    if(widget.least_game == 1){
+      List h = getNum();
+      min = h[0]*num *2;
+      max = h[h.length-1]*num *2;
+      text = "预计奖金" + min.toStringAsFixed(2) + "~" + max.toStringAsFixed(2)+"元";
+    }
+    if(getNum().length == 1){
+      text = "预计奖金" + min.toStringAsFixed(2)+"元";
+    }
     return Text(
       text,
       style: TextStyle(fontSize: ScreenUtil().setSp(13)),
@@ -485,6 +493,7 @@ class order_ extends State<order> {
   }
 
   List getNum() {
+
     List zz = [];
     List zmax = [];
     List zsm = [];
@@ -498,6 +507,7 @@ class order_ extends State<order> {
 
           maps.forEach((key1, value1) {
             List ls1 = value1;
+            //print(ls1);
             ls1.sort((left, right) => left.compareTo(right));
 
             if (ls1.length > 0) {
@@ -514,6 +524,7 @@ class order_ extends State<order> {
     });
 
     List ar = [];
+    //print(zz);
     if (widget.least_game == 1) {
       zz.forEach((z) {
         List z1 = z;
@@ -551,6 +562,7 @@ class order_ extends State<order> {
         });
       });
     });
+
     ars.sort((left, right) => left.compareTo(right));
     return ars;
   }
@@ -1134,6 +1146,68 @@ class order_ extends State<order> {
           ks_sfc: wnm_lose,
         );
       case 4:
+        return basketdxf(
+          callBack: (value) {
+            setState(() {
+              games = value;
+            });
+          },
+          p_status: p_status,
+          games: games,
+          e2: e2,
+          e: e,
+          zd_name: zd_name,
+          kd_name: kd_name,
+          dxf: dxf_odds,
+          p_goal: p_goal,
+        );
+      case 5:
+        return basketballSf(
+            callBack: (value) {
+              setState(() {
+                games = value;
+              });
+            },
+            p_status: p_status,
+            games: games,
+            e2: e2,
+            e: e,
+            zd_name: zd_name,
+            kd_name: kd_name,
+            sf: mnl_odds);
+      case 6:
+        return basketballrfSf(
+          callBack: (value) {
+            setState(() {
+              games = value;
+            });
+          },
+          p_status: p_status,
+          games: games,
+          e2: e2,
+          e: e,
+          zd_name: zd_name,
+          kd_name: kd_name,
+          rfsf: hdc_odds,
+          p_goal: p_goal,
+        );
+      case 7:
+        return basketbifen(
+          callBack: (value) {
+            setState(() {
+              games = value;
+            });
+          },
+          p_status: p_status,
+          games: games,
+          e2: e2,
+          e: e,
+          zd_name: zd_name,
+          kd_name: kd_name,
+          zs_sfc: wnm_win,
+          ks_sfc: wnm_lose,
+        );
+      case 8:
         return basketdxf(
           callBack: (value) {
             setState(() {

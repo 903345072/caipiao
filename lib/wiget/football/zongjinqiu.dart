@@ -119,9 +119,7 @@ class _ChildState extends State<zongjinqiu> {
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][3]["bet_way"][e]["color"] == "co"){
-              if(!attr.contains(widget.ttg_odds[e])){
                 attr.add(widget.ttg_odds[e]);
-              }
 
             }else{
               attr.remove(widget.ttg_odds[e]);

@@ -28,6 +28,7 @@ class _IndexPage extends State<IndexPage> with AutomaticKeepAliveClientMixin {
 
   List newsContainer ;
   List news;
+  List zhongjiang = [];
   void initState() {
     super.initState();
     news = [];
@@ -36,9 +37,11 @@ class _IndexPage extends State<IndexPage> with AutomaticKeepAliveClientMixin {
   }
   loadNews() async {
    ResultData res = await HttpManager.getInstance().get("news",withLoading: false);
+   ResultData res1 = await HttpManager.getInstance().get("zhongjiang",withLoading: false);
 
    setState(() {
      news = res.data["news"];
+     zhongjiang = res1.data["data"];
    });
   }
   List getNews(){
@@ -170,7 +173,7 @@ class _IndexPage extends State<IndexPage> with AutomaticKeepAliveClientMixin {
                     Container(
                       width: ScreenUtil().setWidth(385),
                       child: MarqueeWidget(
-                        text: "蛋炒饭***喜中竞彩足球99871.00元   拔吊***喜中竞彩足球99871.00元",
+                        text: getZhongJiang(),
                         textStyle:
                             new TextStyle(fontSize: ScreenUtil().setSp(15)),
                         scrollAxis: Axis.horizontal,
@@ -216,7 +219,7 @@ class _IndexPage extends State<IndexPage> with AutomaticKeepAliveClientMixin {
                                 child: Wrap(
                                   direction: Axis.vertical,
                                   alignment: WrapAlignment.spaceAround,
-                                  children: <Widget>[Text("竞彩足球"), Text("欧冠八强赛",style: TextStyle(color: Colors.grey,fontSize: ScreenUtil().setSp(12)))],
+                                  children: <Widget>[Text("竞彩足球"), Text("五大联赛",style: TextStyle(color: Colors.grey,fontSize: ScreenUtil().setSp(12)))],
                                 ),
                               ),
 
@@ -304,5 +307,19 @@ class _IndexPage extends State<IndexPage> with AutomaticKeepAliveClientMixin {
             ],
           ),
         ));
+  }
+  getZhongJiang(){
+    String str = "";
+    String type = "";
+    zhongjiang.forEach((element) {
+      if(element["type"] == "f"){
+        type = "竞彩足球";
+      }else{
+        type = "竞彩篮球";
+      }
+      str+= element["nickname"]+"喜中"+type+element["award_money"].toString()+"元";
+      str += "                      ";
+    });
+    return str;
   }
 }

@@ -94,7 +94,15 @@ class hangqing_ extends State<orderdetail>{
                           direction: Axis.vertical,
                           children: <Widget>[
                             Text("奖金"),
-                            Text(order["state"]==2?order["award_money"].toString():"--",style: TextStyle(color: Colors.red),),
+                            Text(order["state"]==2?order["award_money"].toStringAsFixed(2):"--",style: TextStyle(color: Colors.red),),
+                          ],
+                        ),
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          direction: Axis.vertical,
+                          children: <Widget>[
+                            Text("加奖"),
+                            Text(order["state"]==2?double.parse(order["jia_jiang"]).toStringAsFixed(2):"--",style: TextStyle(color: Colors.red),),
                           ],
                         ),
 
@@ -108,8 +116,8 @@ class hangqing_ extends State<orderdetail>{
                       spacing: 5,
                       children: <Widget>[
                         Text("投注信息: "),
-                        Text("2场",style: TextStyle(color: Colors.red),),
-                        Text("1倍",style: TextStyle(color: Colors.red),),
+                        Text(game.length.toString()+"场",style: TextStyle(color: Colors.red),),
+                        Text(order["bei"].toString()+"倍",style: TextStyle(color: Colors.red),),
                       ],
                     ),
                   ),
@@ -135,7 +143,7 @@ class hangqing_ extends State<orderdetail>{
                             ),
                             Container(
                               width: ScreenUtil().setWidth(105),
-                              child: Text("主队VS客队"),
+                              child: order["type"] =="f"?Text("主队VS客队"):Text("客队VS主队"),
                             ),
                             Container(
                               width: ScreenUtil().setWidth(65),
@@ -244,9 +252,9 @@ class hangqing_ extends State<orderdetail>{
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-               Text(h_name,style: TextStyle(fontSize: ScreenUtil().setSp(13),height: 1.2),),
+               Text(order["type"]=="f"?h_name:a_name,style: TextStyle(fontSize: ScreenUtil().setSp(13),height: 1.2),),
                 Text(bifen,style: TextStyle(fontSize: ScreenUtil().setSp(13),height: 1.2)),
-                Text(a_name,style: TextStyle(fontSize: ScreenUtil().setSp(13),height: 1.2)),
+                Text(order["type"]=="f"?a_name:h_name,style: TextStyle(fontSize: ScreenUtil().setSp(13),height: 1.2)),
               ],
             ),
           ),
@@ -271,11 +279,13 @@ class hangqing_ extends State<orderdetail>{
      String p_goal;
      String rf = "-500";
      bool is_right = false;
+
      return s.keys.map((e){
        List ls = s[e];
+
        ls.forEach((element) {
          if(element["ret"] == 1){
-           is_right = true;
+          s[e][0]["is_right"] = true;
          }
        });
        p_goal = ls[0]["p_goal"];
@@ -288,7 +298,6 @@ class hangqing_ extends State<orderdetail>{
          if(meth_id[0] == "2"){
            if(pg.length == 1){
               rf = pg[0];
-
            }else{
              rf = pg[1];
 
@@ -330,6 +339,7 @@ class hangqing_ extends State<orderdetail>{
               child: Column(
 
                 children: ls.asMap().keys.map((e2){
+
                   return Container(
                     decoration: BoxDecoration(border:Border(bottom: ls.length!=1?BorderSide(width: 0.1):BorderSide(width: 0.1),right: BorderSide(width: 0.1),left: BorderSide(width: 0.1))),
                     height: ScreenUtil().setHeight(65),
@@ -351,7 +361,7 @@ class hangqing_ extends State<orderdetail>{
             Container(
               alignment: Alignment.center,
               width: ScreenUtil().setWidth(84),
-              child: Text(ls[0]["caiguo"].toString(),style: TextStyle(color: is_right==true?Colors.red:Colors.grey),),
+              child: Text(ls[0]["caiguo"].toString(),style: TextStyle(color: s[e][0]["is_right"]==true?Colors.red:Colors.grey),),
             ),
 
           ],
@@ -366,5 +376,6 @@ class hangqing_ extends State<orderdetail>{
       game = res.data["detail"];
       order = res.data["order"];
     });
+
   }
 }

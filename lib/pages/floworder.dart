@@ -10,10 +10,12 @@ import 'package:flutterapp2/net/HttpManager.dart';
 import 'package:flutterapp2/net/ResultData.dart';
 import 'package:flutterapp2/pages/IndexPage.dart';
 import 'package:flutterapp2/pages/Mine.dart';
+import 'package:flutterapp2/pages/flowInstruct.dart';
 import 'package:flutterapp2/pages/flowdetail.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
 import 'package:flutterapp2/utils/Rute.dart';
 import 'package:flutterapp2/utils/Toast.dart';
+import 'package:marquee_flutter/marquee_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../main.dart';
@@ -34,6 +36,7 @@ class Login_ extends State<floworder> {
   bool check = false;
   List list = [];
   List dashen = [];
+  List zhongjiang = [];
   FocusNode _commentFocus;
 
   @override
@@ -46,10 +49,11 @@ class Login_ extends State<floworder> {
 
   getList() async {
    ResultData res = await HttpManager.getInstance().get("getFlowOrder",withLoading: false);
-
+   ResultData res1 = await HttpManager.getInstance().get("zhongjiang",withLoading: false);
    setState(() {
      list = res.data["data"];
      dashen = res.data["dashen"];
+     zhongjiang = res1.data["data"];
    });
   }
   @override
@@ -69,8 +73,16 @@ class Login_ extends State<floworder> {
           ),
           backgroundColor: Color(0xfffa2020),
           title: Text("跟单"),
+          actions: <Widget>[
+            IconButton(
+              onPressed: (){
+                JumpAnimation().jump(flowInstruct(), context);
+              },
+              icon: Icon(Icons.bookmark),
+            )
+          ],
         ),
-        backgroundColor: Color(0xfff5f5f5),
+        backgroundColor: Colors.white,
         body: MediaQuery.removePadding(
             context: context,
             removeTop: true,
@@ -109,8 +121,31 @@ class Login_ extends State<floworder> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Container(
-                                        margin: EdgeInsets.only(bottom: 10),
-                                        child: Text("大神排行"),
+                                        alignment: Alignment.center,
+                                        margin: EdgeInsets.only(bottom: 15),
+                                        child: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: <Widget>[
+                                            Container(
+                                              margin: EdgeInsets.only(right: ScreenUtil().setWidth(5)),
+                                              child: Image.asset("img/dashen.png",color:Colors.deepOrange,width: ScreenUtil().setWidth(70),fit: BoxFit.fill,),
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(top: ScreenUtil().setWidth(3),right:ScreenUtil().setWidth(3), ),
+                                              child: Image.asset("img/tuijian.jpg",width: ScreenUtil().setWidth(20),fit: BoxFit.fill,),
+                                            ),
+                                            Icon(Icons.star,color: Colors.yellow,size: 10,),
+                                            Icon(Icons.star,color: Colors.yellow,size: 10,),
+                                            Icon(Icons.star,color: Colors.yellow,size: 10,),
+                                            Icon(Icons.star,color: Colors.yellow,size: 10,),
+                                            Icon(Icons.star,color: Colors.yellow,size: 10,),
+                                            Container(
+                                              margin: EdgeInsets.only(left: ScreenUtil().setWidth(10)),
+                                              width: ScreenUtil().setWidth(220),
+                                              decoration: BoxDecoration(border: Border(top: BorderSide(width: 0.5,color: Color(0xffa3a3a3)))),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                       Wrap(
                                         crossAxisAlignment: WrapCrossAlignment.center,
@@ -132,7 +167,27 @@ class Login_ extends State<floworder> {
                                             ],
                                           );
                                         }).toList(),
-                                      )
+                                      ),
+                                      Container(
+                                        height: ScreenUtil().setHeight(50),
+                                        width: double.infinity,
+                                        child: Row(
+                                          children: <Widget>[
+                                            Container(
+                                              child: Image.asset("img/toutiao.png",fit: BoxFit.fill,width: ScreenUtil().setWidth(80),),
+                                            ),
+                                            Container(
+                                              width: ScreenUtil().setWidth(320),
+                                              child: MarqueeWidget(
+                                                text: getZhongJiang(),
+                                                textStyle:
+                                                new TextStyle(fontSize: ScreenUtil().setSp(15)),
+                                                scrollAxis: Axis.horizontal,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -280,5 +335,19 @@ class Login_ extends State<floworder> {
         ),
       );
     }).toList();
+  }
+  getZhongJiang(){
+    String str = "";
+    String type = "";
+    zhongjiang.forEach((element) {
+      if(element["type"] == "f"){
+        type = "竞彩足球";
+      }else{
+        type = "竞彩篮球";
+      }
+      str+= element["nickname"]+"喜中"+type+element["award_money"].toString()+"元";
+      str += "                      ";
+    });
+    return str;
   }
 }

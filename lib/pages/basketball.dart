@@ -5,25 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp2/net/HttpManager.dart';
-import 'package:flutterapp2/pages/config/config.dart';
-import 'package:flutterapp2/utils/EventDioLog.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
 import 'package:flutterapp2/utils/Toast.dart';
-import 'package:flutterapp2/utils/checkMethod.dart';
 import 'package:flutterapp2/net/ResultData.dart';
 import 'package:flutterapp2/wiget/basketball/basketballMix.dart';
 import 'package:flutterapp2/wiget/basketball/basketballSf.dart';
 import 'package:flutterapp2/wiget/basketball/basketballrfSf.dart';
-
 import 'package:flutterapp2/wiget/basketball/basketbifen.dart';
 import 'package:flutterapp2/wiget/basketball/basketdxf.dart';
-import 'package:flutterapp2/wiget/football/banquanchang.dart';
-import 'package:flutterapp2/wiget/football/bifen.dart';
-import 'package:flutterapp2/wiget/football/feirangqiu.dart';
-import 'package:flutterapp2/wiget/football/mix.dart';
-import 'package:flutterapp2/wiget/football/rangqiu.dart';
-import 'package:flutterapp2/wiget/football/zongjinqiu.dart';
-
 import 'order.dart';
 class basketball extends StatefulWidget {
   @override
@@ -45,6 +34,10 @@ class _GZXDropDownMenuTestPageState extends State<basketball> {
     {"name": "让分胜负","least_game":2},
     {"name": "胜分差","least_game":2},
     {"name": "大小分","least_game":2},
+    {"name": "胜负|单","least_game":1},
+    {"name": "让分胜负|单","least_game":1},
+    {"name": "胜分差|单","least_game":1},
+    {"name": "大小分|单","least_game":1},
     {"name": "","least_game":2},
 
   ];
@@ -266,6 +259,30 @@ getComponent(p_status,p_goal,games,e2,e,zd_name,kd_name,mnl_odds,hdc_odds,dxf_od
           });
         },p_status:p_status,games: games,e2: e2,e: e,zd_name: zd_name,kd_name: kd_name,zs_sfc: wnm_win,ks_sfc: wnm_lose,);
       case 4:
+        return basketdxf(callBack: (value) {
+          setState(() {
+            games = value;
+          });
+        },p_status:p_status,games: games,e2: e2,e: e,zd_name: zd_name,kd_name: kd_name,dxf: dxf_odds,p_goal: p_goal,);
+      case 5:
+        return basketballSf(callBack: (value) {
+          setState(() {
+            games = value;
+          });
+        },p_status:p_status,games: games,e2: e2,e: e,zd_name: zd_name,kd_name: kd_name,sf: mnl_odds);
+      case 6:
+        return basketballrfSf(callBack: (value) {
+          setState(() {
+            games = value;
+          });
+        },p_status:p_status,games: games,e2: e2,e: e,zd_name: zd_name,kd_name: kd_name,rfsf: hdc_odds,p_goal: p_goal,);
+      case 7:
+        return basketbifen(callBack: (value) {
+          setState(() {
+            games = value;
+          });
+        },p_status:p_status,games: games,e2: e2,e: e,zd_name: zd_name,kd_name: kd_name,zs_sfc: wnm_win,ks_sfc: wnm_lose,);
+      case 8:
         return basketdxf(callBack: (value) {
           setState(() {
             games = value;

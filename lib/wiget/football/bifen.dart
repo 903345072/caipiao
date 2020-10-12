@@ -379,9 +379,9 @@ getScore(){
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][2]["bet_way"][e]["color"] == "co"){
-              if(!attr.contains(widget.crs_win[e])){
+
                 attr.add(widget.crs_win[e]);
-              }
+
 
             }else{
               attr.remove(widget.crs_win[e]);

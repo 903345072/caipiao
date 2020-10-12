@@ -417,10 +417,10 @@ getScore(){
           String mid = widget.games[widget.e2][widget.e]["check_info"][2]["id"].toString();
           if(checks[mid] != null){
             List attr = checks[mid];
-            if(widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][e]["color"] == "co"){
-              if(!attr.contains(widget.zs_sfc[e])){
+            if(widget.games[widget.e2][widget.e]["check_info"][2]["bet_way"][e]["color"] == "co"){
+
                 attr.add(widget.zs_sfc[e]);
-              }
+
 
             }else{
               attr.remove(widget.zs_sfc[e]);
@@ -505,9 +505,9 @@ getScore(){
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][3]["bet_way"][e]["color"] == "co"){
-              if(!attr.contains(widget.ks_sfc[e])){
+
                 attr.add(widget.ks_sfc[e]);
-              }
+
 
             }else{
               attr.remove(widget.ks_sfc[e]);

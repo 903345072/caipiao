@@ -619,9 +619,9 @@ class _ChildState extends State<mix> {
          if(checks[mid] != null){
            List attr = checks[mid];
            if(widget.games[e2][e1]["check_info"][1]["bet_way"][e]["color"] == "co"){
-             if(!attr.contains(widget.rqspf[e])){
+
                attr.add(widget.rqspf[e]);
-             }
+
 
            }else{
              attr.remove(widget.rqspf[e]);
@@ -711,9 +711,9 @@ class _ChildState extends State<mix> {
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[e2][e1]["check_info"][0]["bet_way"][e]["color"] == "co"){
-              if(!attr.contains(widget.spf[e])){
+
                 attr.add(widget.spf[e]);
-              }
+
 
             }else{
               attr.remove(widget.spf[e]);
@@ -802,9 +802,9 @@ class _ChildState extends State<mix> {
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][e]["color"] == "co"){
-              if(!attr.contains(widget.spf[e])){
+
                 attr.add(widget.spf[e]);
-              }
+
 
             }else{
               attr.remove(widget.spf[e]);
@@ -873,9 +873,9 @@ class _ChildState extends State<mix> {
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][1]["bet_way"][e]["color"] == "co"){
-              if(!attr.contains(widget.rqspf[e])){
+
                 attr.add(widget.rqspf[e]);
-              }
+
             }else{
               attr.remove(widget.rqspf[e]);
             }
@@ -943,9 +943,9 @@ class _ChildState extends State<mix> {
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][e]["color"] == "co"){
-              if(!attr.contains(widget.half_odds[e])){
+
                 attr.add(widget.half_odds[e]);
-              }
+
             }else{
               attr.remove(widget.half_odds[e]);
             }
@@ -1030,9 +1030,7 @@ class _ChildState extends State<mix> {
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][3]["bet_way"][e]["color"] == "co"){
-              if(!attr.contains(widget.ttg_odds[e])){
                 attr.add(widget.ttg_odds[e]);
-              }
             }else{
               attr.remove(widget.ttg_odds[e]);
             }
@@ -1121,9 +1119,7 @@ class _ChildState extends State<mix> {
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][2]["bet_way"][e]["color"] == "co"){
-              if(!attr.contains(widget.crs_win[e])){
                 attr.add(widget.crs_win[e]);
-              }
             }else{
               attr.remove(widget.crs_win[e]);
             }

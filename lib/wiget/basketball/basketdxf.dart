@@ -116,9 +116,9 @@ getsfList(){
       if(checks[mid] != null){
         List attr = checks[mid];
         if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][0]["color"] == "co"){
-          if(!attr.contains(widget.dxf[0])){
+
             attr.add(widget.dxf[0]);
-          }
+
 
         }else{
           attr.remove(widget.dxf[0]);
@@ -186,9 +186,9 @@ getsfList(){
       if(checks[mid] != null){
         List attr = checks[mid];
         if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][1]["color"] == "co"){
-          if(!attr.contains(widget.dxf[1])){
+
             attr.add(widget.dxf[1]);
-          }
+
 
         }else{
           attr.remove(widget.dxf[1]);

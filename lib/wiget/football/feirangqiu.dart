@@ -115,9 +115,9 @@ class _ChildState extends State<feirangqiu> {
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][e]["color"] == "co"){
-              if(!attr.contains(widget.spf[e])){
+
                 attr.add(widget.spf[e]);
-              }
+
 
             }else{
               attr.remove(widget.spf[e]);

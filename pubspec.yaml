@@ -42,6 +42,8 @@ dependencies:
   marquee_flutter: ^0.1.2
   flutter_html: ^1.0.0
   image_picker: ^0.6.3+1
+  url_launcher: ^5.2.7
+  package_info: ^0.4.0+2
 
 dev_dependencies:
   flutter_test:
@@ -92,6 +94,9 @@ flutter:
     - img/basketball.png
     - img/mineback.jpg
     - img/success.jpeg
+    - img/dashen.png
+    - img/tuijian.jpg
+    - img/toutiao.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
