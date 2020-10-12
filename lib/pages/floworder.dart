@@ -169,7 +169,7 @@ class Login_ extends State<floworder> {
                                         }).toList(),
                                       ),
                                       Container(
-                                        height: ScreenUtil().setHeight(50),
+                                        height: ScreenUtil().setHeight(35),
                                         width: double.infinity,
                                         child: Row(
                                           children: <Widget>[
@@ -184,14 +184,16 @@ class Login_ extends State<floworder> {
                                                 new TextStyle(fontSize: ScreenUtil().setSp(15)),
                                                 scrollAxis: Axis.horizontal,
                                               ),
-                                            )
+                                            ),
+
                                           ],
                                         ),
                                       ),
+                                      Divider(),
                                     ],
                                   ),
                                 ),
-                               Divider(),
+
                                Column(
                                  children: getOrder(),
                                )
@@ -215,7 +217,7 @@ class Login_ extends State<floworder> {
   List getOrder(){
     return list.asMap().keys.map((e){
       return Container(
-        margin: EdgeInsets.only(top: 15,left: 5,right: 5,bottom: 5),
+        margin: EdgeInsets.only(left: 5,right: 5,bottom: 5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
