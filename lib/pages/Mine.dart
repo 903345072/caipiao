@@ -41,7 +41,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
   final SystemUiOverlayStyle _style =
       SystemUiOverlayStyle(statusBarColor: Colors.transparent);
 
-  Map user_info = {"nickname":"","has_bank":"0","now_money":"0","img_url":"http://192.168.31.199/uploads/store/comment/202009251734185199.jpg"};
+  Map user_info = {"nickname":"","has_bank":"0","now_money":"0","img_url":"http://192.168.31.199/uploads/store/comment/202009251734185199.jpg","zhongjiang":"0"};
   Map user_message_cate = {
     "account": "1000",
     "validContract": "12",
@@ -110,6 +110,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
        user_info["now_money"] = res.data["now_money"];
        user_info["has_bank"] = res.data["has_bank"];
        user_info["img_url"] = res.data["avatar"];
+       user_info["zhongjiang"] = res.data["zhongjiang"];
      }
 
    });
@@ -325,7 +326,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                                 child: Text("中奖",style: TextStyle(fontWeight: FontWeight.bold),),
                               ),
                               Container(
-                                child: Text("22679.98元"),
+                                child: Text(user_info["zhongjiang"].toString()+"元"),
                               ),
                             ],
                           ),
