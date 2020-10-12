@@ -26,7 +26,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'heyue.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:package_info/package_info.dart';
+
 class Mine extends StatefulWidget {
   String _title;
 
