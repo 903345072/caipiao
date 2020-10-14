@@ -102,7 +102,7 @@ class _IndexPage extends State<IndexPage> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
   List img_url = [
-    "img/swiper1.jpg",
+    "img/s1.jpg",
     "img/swi1.jpg",
     "img/swi2.png",
     "img/sw3.jpg",

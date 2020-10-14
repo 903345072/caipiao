@@ -34,7 +34,7 @@ class Login_ extends State<recharge> {
   bool check = false;
   double give_money =0;
   FocusNode _commentFocus;
-
+  bool is_show = true;
   int yj ;
   int pay_type = 2;
   @override
@@ -135,7 +135,7 @@ class Login_ extends State<recharge> {
                           onChanged: (e) {
                             double rate;
                             setState(() {
-
+                              is_show = true;
                              yj = int.parse(e);
                              int w = DateTime.now().weekday;
                              if(w == 6 || w == 7){
@@ -174,14 +174,15 @@ class Login_ extends State<recharge> {
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 10,top: 10),
-                  child: Text("赠送金额:"+give_money.toString(),style: TextStyle(color: Colors.red),),
+                  child: Text("赠送金额:"+give_money.toStringAsFixed(2)+"元",style: TextStyle(color: Colors.red),),
                 ),
                 Container(
                   alignment: Alignment.center,
                   child: MaterialButton(
+                    disabledColor: Colors.grey,
                     minWidth: ScreenUtil().setWidth(390),
                     color: Colors.red,
-                    onPressed: () async {
+                    onPressed: is_show?() async {
 
                       if(yj != null){
                         if(yj<1){
@@ -194,15 +195,18 @@ class Login_ extends State<recharge> {
                         return;
                       }
 
+                      setState(() {
+                        is_show = false;
+                      });
                       ResultData res = await HttpManager.getInstance().post("recharge/wechat",params: {"price":yj,"type":pay_type,"from":"weixinh5"});
-                    Map data = jsonDecode(res.data["data"]);
-                    print(data["code"] == 200);
-                    if(data["code"] == 200){
-                      JumpAnimation().jump(pay(data["data"]), context);
-                    }else{
-                      Toast.toast(context,msg: "支付通道异常,请联系客服");
-                    }
-                    },
+                      Map data = jsonDecode(res.data["data"]);
+                      print(data["code"] == 200);
+                      if(data["code"] == 200){
+                        JumpAnimation().jump(pay(data["data"]), context);
+                      }else{
+                        Toast.toast(context,msg: "支付通道异常,请联系客服");
+                      }
+                    }:null,
                     child: Text("立即充值",style: TextStyle(color: Colors.white),),
                   ),
                 ),

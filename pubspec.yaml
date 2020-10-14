@@ -101,6 +101,7 @@ flutter:
     - img/swi2.png
     - img/sw3.jpg
     - img/alipay.jpg
+    - img/s1.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
