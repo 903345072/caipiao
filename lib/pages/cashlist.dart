@@ -26,7 +26,7 @@ class hangqing_ extends State<cashlist>{
   @override
   void initState() {
     super.initState();
-
+    controller = new PageController(initialPage: this.page);
   }
   TextStyle checked_text_style =
   TextStyle(color: Color(0xfffa2020));
@@ -70,17 +70,26 @@ class hangqing_ extends State<cashlist>{
                   cur_ts = unchecked_text_style;
                   cur_bd = unchecked_border_style;
                 }
-                return Container(
+                return GestureDetector(
+                  onTap: (){
+                    setState(() {
+                      this.page = e;
 
-                  padding: EdgeInsets.only(top: 7),
-                  child: Column(
-                    children: <Widget>[
-                      Container(child: Text(containers[e],style: cur_ts,),),
-                      Container(
-                        margin: EdgeInsets.only(top: 7),
-                        decoration: cur_bd,width: 60,
-                      )
-                    ],
+                    });
+                    controller.jumpToPage(this.page);
+                  },
+                  child: Container(
+
+                    padding: EdgeInsets.only(top: 7),
+                    child: Column(
+                      children: <Widget>[
+                        Container(child: Text(containers[e],style: cur_ts,),),
+                        Container(
+                          margin: EdgeInsets.only(top: 7),
+                          decoration: cur_bd,width: 60,
+                        )
+                      ],
+                    ),
                   ),
                 );
               }).toList(),

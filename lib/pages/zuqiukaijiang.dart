@@ -10,6 +10,7 @@ import 'package:flutterapp2/net/HttpManager.dart';
 import 'package:flutterapp2/net/ResultData.dart';
 import 'package:flutterapp2/pages/IndexPage.dart';
 import 'package:flutterapp2/pages/Mine.dart';
+import 'package:flutterapp2/pages/applyDaShen.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
 import 'package:flutterapp2/utils/Rute.dart';
 import 'package:flutterapp2/utils/Toast.dart';
@@ -68,28 +69,34 @@ class Login_ extends State<zuqiukaijiang> {
           title: Text("竞彩足球开奖详情",style: TextStyle(fontSize: ScreenUtil().setSp(18)),),
         ),
         backgroundColor: Colors.white,
-        body: ListView(
+        body: Stack(
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(top: 10,bottom: 5),
-              decoration: BoxDecoration(color: Colors.white),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text("赛事",style: TextStyle(color: Colors.red,fontSize: 15),),
-                  Text("对阵",style: TextStyle(color: Colors.red,fontSize: 15),),
-                  Text("赛果",style: TextStyle(color: Colors.red,fontSize: 15),),
-                ],
+            ListView(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(top: 10,bottom: 5),
+                decoration: BoxDecoration(color: Colors.white),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Text("赛事",style: TextStyle(color: Colors.red,fontSize: 15),),
+                    Text("对阵",style: TextStyle(color: Colors.red,fontSize: 15),),
+                    Text("赛果",style: TextStyle(color: Colors.red,fontSize: 15),),
+                  ],
+                ),
               ),
-            ),
-            Column(
-              children: getList(),
-            ),
+              Column(
+                children: getList(),
+              ),
+            ],
+          ),
+            
           ],
         ),
       ),
     );
   }
+
   List<Widget> getList(){
 
     return list.keys.map((e){

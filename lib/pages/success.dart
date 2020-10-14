@@ -7,6 +7,9 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutterapp2/pages/IndexBack.dart';
 
 import 'package:flutterapp2/pages/IndexPage.dart';
+import 'package:flutterapp2/pages/basketball.dart';
+import 'package:flutterapp2/pages/football.dart';
+import 'package:flutterapp2/pages/orderdetail.dart';
 
 import 'package:flutterapp2/utils/JumpAnimation.dart';
 
@@ -17,7 +20,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class success extends StatefulWidget {
   Map data;
-  success(this.data);
+  String type;
+  success(this.data,this.type);
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -37,6 +41,7 @@ class Login_ extends State<success> {
     // TODO: implement initState
     super.initState();
     _commentFocus = FocusNode();
+
   }
 
   @override
@@ -110,7 +115,9 @@ class Login_ extends State<success> {
               padding: EdgeInsets.only(left: 30,right: 30),
               child: MaterialButton(
                 color: Color(0xfffa2020),
-                onPressed: (){Toast.toast(context,msg:"数据加载中...");},
+                onPressed: (){
+                  JumpAnimation().jump(orderdetail(int.parse(widget.data["id"]),widget.data["mode"],widget.type), context);
+                },
                 child: Text("查看投注详情",style: TextStyle(color: Colors.white),),
               ),
             ),

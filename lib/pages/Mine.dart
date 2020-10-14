@@ -16,6 +16,7 @@ import 'package:flutterapp2/pages/editCard.dart';
 import 'package:flutterapp2/pages/editPassword.dart';
 import 'package:flutterapp2/pages/kefu.dart';
 import 'package:flutterapp2/pages/orderlist.dart';
+import 'package:flutterapp2/pages/recharge.dart';
 import 'package:flutterapp2/pages/stock.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterapp2/utils/EventDioLog.dart';
@@ -41,7 +42,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
   final SystemUiOverlayStyle _style =
       SystemUiOverlayStyle(statusBarColor: Colors.transparent);
 
-  Map user_info = {"nickname":"","has_bank":"0","now_money":"0","img_url":"http://192.168.31.199/uploads/store/comment/202009251734185199.jpg","zhongjiang":"0"};
+  Map user_info = {"nickname":"","has_bank":"0","now_money":"0","img_url":"http://kaifa.crmeb.net/uploads/attach/2019/08/20190807/723adbdd4e49a0f9394dfc700ab5dba3.png","zhongjiang":"0"};
   Map user_message_cate = {
     "account": "1000",
     "validContract": "12",
@@ -240,7 +241,9 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                     spacing: 25,
                     children: <Widget>[
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          JumpAnimation().jump(recharge(), context);
+                        },
                         child: Container(
                           child: Text("充值",
                               style: TextStyle(

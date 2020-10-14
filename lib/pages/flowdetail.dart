@@ -100,7 +100,7 @@ class Login_ extends State<flowdetail> {
                           direction: Axis.vertical,
                           children: <Widget>[
                             Text("起跟金额"),
-                            Text((widget.data["num"]*2).toString()+"元",style: TextStyle(fontWeight: FontWeight.bold),)
+                            Text((widget.data["start_money"]).toString()+"元",style: TextStyle(fontWeight: FontWeight.bold),)
                           ],
                         )
                       ],
@@ -301,22 +301,19 @@ class Login_ extends State<flowdetail> {
                               margin: EdgeInsets.only(right: 15),
                               child: Text("倍"),
                             ),
-                            Text((num*2*widget.data["num"]).toString()+"元",style: TextStyle(color: Colors.red),),
+                            Text((num*widget.data["start_money"]).toString()+"元",style: TextStyle(color: Colors.red),),
 
                           ],
                         ),
                       ),
                       GestureDetector(
-
                         onTap: () async {
                           EventDioLog("提示","确认付款",context,() async {
-
                             ResultData res = await HttpManager.getInstance().post("doFlowOrder",params:{"id":widget.data["id"],"num":num,});
                             if(res.data["code"] == 200){
                               Toast.toast(context,msg: "付款成功");
                               JumpAnimation().jump(IndexBack(), context);
                             }else{
-
                               Toast.toast(context,msg: res.data["msg"]);
                               return;
                             }

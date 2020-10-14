@@ -96,6 +96,7 @@ class HttpManager {
     try {
       var token = await TokenStore().getToken("token");
       _dio.options.headers = {'Authori-zation':token};
+
       response = await _dio.post(api, data: params);
       if (withLoading) {
         LoadingUtils.dismiss();

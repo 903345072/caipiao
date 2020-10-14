@@ -78,7 +78,7 @@ class Login_ extends State<floworder> {
               onPressed: (){
                 JumpAnimation().jump(flowInstruct(), context);
               },
-              icon: Icon(Icons.bookmark),
+              icon: Icon(Icons.info_outline),
             )
           ],
         ),
@@ -147,26 +147,30 @@ class Login_ extends State<floworder> {
                                           ],
                                         ),
                                       ),
-                                      Wrap(
-                                        crossAxisAlignment: WrapCrossAlignment.center,
-                                        spacing: 20,
-                                        children: dashen.asMap().keys.map((e) {
-                                          return Wrap(
-                                            spacing: 5,
-                                            crossAxisAlignment: WrapCrossAlignment.center,
-                                            direction: Axis.vertical,
-                                            children: <Widget>[
-                                              ClipOval(
-                                                  child: Image.network(
-                                                    dashen[e]["avatar"],
-                                                    fit: BoxFit.fill,
-                                                    width: ScreenUtil().setWidth(45),
-                                                    height: ScreenUtil().setWidth(45),
-                                                  )),
-                                              Text(dashen[e]["nickname"])
-                                            ],
-                                          );
-                                        }).toList(),
+                                      Container(
+                                        margin: EdgeInsets.only(left: ScreenUtil().setWidth(25),right: ScreenUtil().setWidth(25)),
+                                        child: Wrap(
+                                          crossAxisAlignment: WrapCrossAlignment.center,
+                                          spacing: 40,
+                                          children: dashen.asMap().keys.map((e) {
+                                            return Wrap(
+
+                                              spacing: 5,
+                                              crossAxisAlignment: WrapCrossAlignment.center,
+                                              direction: Axis.vertical,
+                                              children: <Widget>[
+                                                ClipOval(
+                                                    child: Image.network(
+                                                      dashen[e]["avatar"],
+                                                      fit: BoxFit.fill,
+                                                      width: ScreenUtil().setWidth(55),
+                                                      height: ScreenUtil().setWidth(55),
+                                                    )),
+                                                Text(dashen[e]["nickname"])
+                                              ],
+                                            );
+                                          }).toList(),
+                                        ),
                                       ),
                                       Container(
                                         height: ScreenUtil().setHeight(35),
@@ -233,8 +237,8 @@ class Login_ extends State<floworder> {
                         child: Image.network(
                           list[e]["avatar"],
                           fit: BoxFit.fill,
-                          width: ScreenUtil().setWidth(35),
-                          height: ScreenUtil().setWidth(35),
+                          width: ScreenUtil().setWidth(45),
+                          height: ScreenUtil().setWidth(45),
                         )),
                     Text(list[e]["nickname"]),
                   ],

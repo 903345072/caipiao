@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp2/net/HttpManager.dart';
 import 'package:flutterapp2/net/ResultData.dart';
+import 'package:flutterapp2/pages/applyDaShen.dart';
+import 'package:flutterapp2/pages/sendOrder.dart';
 import 'package:flutterapp2/pages/success.dart';
 import 'package:flutterapp2/utils/EventDioLog.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
@@ -65,6 +67,7 @@ class order_ extends State<order> {
   List chuan = [];
   int bot = 100;
 
+
   @override
   void initState() {
     // TODO: implement initState
@@ -79,6 +82,7 @@ class order_ extends State<order> {
       chuan.add({"num": i + 1, "color": Colors.grey});
       i++;
     });
+
   }
 
   @override
@@ -242,19 +246,82 @@ class order_ extends State<order> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-//                          GestureDetector(
-//                            child: Container(
-//                              alignment: Alignment.center,
-//                              width: ScreenUtil().setWidth(90),
-//                              color: Color(0xffe6e6e6),
-//                              child: Text("发单"),
-//                            ),
-//                          ),
+                          GestureDetector(
+                            onTap: () async{
+
+
+
+                              int check_length = chuan_.length;
+                              if (widget.least_game > 1) {
+                                if (check_length == 0) {
+                                  setState(() {
+                                    visible_ =
+                                    visible_ == true ? false : true;
+                                    is_pack =
+                                    is_pack == true ? false : true;
+                                  });
+                                  return;
+                                }
+                              }
+
+                              if(getNum().length == 0){
+                                Toast.toast(context,msg: "请选择比赛");
+                                return;
+                              }
+                              ResultData res = await HttpManager.getInstance().get("isdashen");
+
+                              String is_dashen = res.msg;
+                              if(is_dashen != "1"){
+                                EventDioLog("提示","你还不是大神，请前往申请大神",context,(){
+                                  JumpAnimation().jump(applyDaShen(), context);
+                                }).showDioLog();
+                               return;
+                              }
+                              if(double.parse(getMoney())<100){
+                                Toast.toast(context,msg: "投注金额不能低于100元");
+                                return;
+                              }
+                              List check_game = [];
+                              widget.games.forEach((key, value) {
+                                value.forEach((game) {
+                                  if (widget.game_ids
+                                      .contains(game["id"])) {
+                                    List ls1 = game["check_info"];
+                                    List attr = [];
+                                    ls1.forEach((element) {
+                                      List ls2 = element["bet_way"];
+                                      ls2.forEach((element2) {
+                                        if (element2["color"] == "red") {
+                                          attr.add({
+                                            "id": game["id"],
+                                            "attr": element["id"]
+                                                .toString() +
+                                                "-" +
+                                                element2["id"].toString()
+                                          });
+                                        }
+                                      });
+                                    });
+                                    check_game.add(attr);
+                                  }
+                                });
+                              });
+
+
+                              JumpAnimation().jump(sendOrder(check_game,chuan_,getNum().length,num,widget.f_or_b), context);
+
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: ScreenUtil().setWidth(90),
+                              color: Color(0xffe6e6e6),
+                              child: Text("发单"),
+                            ),
+                          ),
                               Container(
-                                margin: EdgeInsets.only(
-                                    left: ScreenUtil().setWidth(40)),
+
                                 alignment: Alignment.center,
-                                width: ScreenUtil().setWidth(220),
+                                width: ScreenUtil().setWidth(180),
                                 child: Wrap(
 
                                   direction: Axis.vertical,
@@ -338,7 +405,7 @@ class order_ extends State<order> {
                                     });
                                     if (res.data["code"] == 200) {
                                       JumpAnimation().jump(
-                                          success(res.data["data"]), context);
+                                          success(res.data["data"],widget.f_or_b), context);
                                     } else {
                                       Toast.toast(context,
                                           msg: res.data["msg"]);

@@ -8,7 +8,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp2/net/HttpManager.dart';
 import 'package:flutterapp2/net/ResultData.dart';
+import 'package:flutterapp2/pages/applyDaShen.dart';
 import 'package:flutterapp2/pages/article.dart';
+import 'package:flutterapp2/pages/lanqiukaijiang.dart';
+import 'package:flutterapp2/pages/zuqiukaijiang.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
 import 'package:flutterapp2/wiget/CommonWiget.dart';
 import 'package:marquee_flutter/marquee_flutter.dart';
@@ -100,8 +103,9 @@ class _IndexPage extends State<IndexPage> with AutomaticKeepAliveClientMixin {
   bool get wantKeepAlive => true;
   List img_url = [
     "img/swiper1.jpg",
-    "img/swiper2.jpg",
-    "img/swiper3.jpg",
+    "img/swi1.jpg",
+    "img/swi2.png",
+    "img/sw3.jpg",
   ];
   List texts = [
     {"name": "上证指数", "value": "2268.1 2.1%"},
@@ -144,9 +148,17 @@ class _IndexPage extends State<IndexPage> with AutomaticKeepAliveClientMixin {
                   itemCount: img_url.length,
                   autoplay: true,
                   itemBuilder: (BuildContext context, int index) {
-                    return Image.asset(
+                    return index !=3?Image.asset(
                       img_url[index],
                       fit: BoxFit.fill,
+                    ):GestureDetector(
+                      onTap: (){
+                        JumpAnimation().jump(applyDaShen(), context);
+                      },
+                      child: Image.asset(
+                        img_url[index],
+                        fit: BoxFit.fill,
+                      ),
                     );
                   },
                   pagination: SwiperPagination(
@@ -267,39 +279,49 @@ class _IndexPage extends State<IndexPage> with AutomaticKeepAliveClientMixin {
                   ],
                 ),
               ),
-//              CommonWiget().getTaiTou("比分"),
-//              Container(
-//                margin: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
-//                child: Row(
-//                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                  children: <Widget>[
-//                    Card(
-//                      shape: RoundedRectangleBorder(
-//                          borderRadius:
-//                          BorderRadiusDirectional.circular(5)),
-//                      clipBehavior: Clip.antiAlias,
-//                      child: Image.asset(
-//                        "img/swiper3.jpg",
-//                        fit: BoxFit.fill,
-//                        width: ScreenUtil().setWidth(180),
-//                        height: ScreenUtil().setHeight(105),
-//                      ),
-//                    ),
-//                    Card(
-//                      shape: RoundedRectangleBorder(
-//                          borderRadius:
-//                          BorderRadiusDirectional.circular(5)),
-//                      clipBehavior: Clip.antiAlias,
-//                      child: Image.asset(
-//                        "img/swiper2.jpg",
-//                        fit: BoxFit.fill,
-//                        width: ScreenUtil().setWidth(180),
-//                        height: ScreenUtil().setHeight(105),
-//                      ),
-//                    ),
-//                  ],
-//                ),
-//              ),
+              CommonWiget().getTaiTou("比分"),
+              Container(
+                margin: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: (){
+                        JumpAnimation().jump(zuqiukaijiang(), context);
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadiusDirectional.circular(5)),
+                        clipBehavior: Clip.antiAlias,
+                        child: Image.asset(
+                          "img/swiper3.jpg",
+                          fit: BoxFit.fill,
+                          width: ScreenUtil().setWidth(180),
+                          height: ScreenUtil().setHeight(105),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: (){
+                        JumpAnimation().jump(lanqiukaijiang(), context);
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadiusDirectional.circular(5)),
+                        clipBehavior: Clip.antiAlias,
+                        child: Image.asset(
+                          "img/swiper2.jpg",
+                          fit: BoxFit.fill,
+                          width: ScreenUtil().setWidth(180),
+                          height: ScreenUtil().setHeight(105),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               CommonWiget().getTaiTou("资讯"),
               Column(
                 children: getNews(),

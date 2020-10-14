@@ -80,7 +80,7 @@ class Login_ extends State<kefu> {
                         Container(
                           padding: EdgeInsets.only(left: 5,right: 5,top: 5,bottom: 5),
                           //decoration: BoxDecoration(color:Color(0xfffa2020),borderRadius: BorderRadius.all(Radius.circular(10))),
-                          child: Text("客服QQ:896444997",),
+                          child: Text("客服QQ:358489230",),
                         )
                       ],
                     ),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp2/net/HttpManager.dart';
+import 'package:flutterapp2/pages/IndexPage.dart';
 import 'package:flutterapp2/pages/config/config.dart';
 import 'package:flutterapp2/utils/EventDioLog.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
@@ -18,6 +19,7 @@ import 'package:flutterapp2/wiget/football/mix.dart';
 import 'package:flutterapp2/wiget/football/rangqiu.dart';
 import 'package:flutterapp2/wiget/football/zongjinqiu.dart';
 
+import 'IndexBack.dart';
 import 'order.dart';
 class football extends StatefulWidget {
   @override
@@ -124,7 +126,7 @@ class _GZXDropDownMenuTestPageState extends State<football> {
         child: Container(
             decoration: BoxDecoration(color: Colors.white),
             child: ExpansionTile(
-              initiallyExpanded:true,
+
               title: Text(date+" 周"+num_to_cn[week]+" "+list_game.length.toString()+"场比赛可投"),
               children: <Widget>[
                 Container(
@@ -333,6 +335,7 @@ getComponent(p_status,p_goal,games,e2,e,zd_name,kd_name,spf,rqspf,crs_win,ttg_od
       child: Scaffold(
 
         appBar: AppBar(
+
           centerTitle: true,
           elevation: 0,
           iconTheme: IconThemeData(

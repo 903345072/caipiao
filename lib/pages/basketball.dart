@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp2/net/HttpManager.dart';
+import 'package:flutterapp2/pages/IndexBack.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
 import 'package:flutterapp2/utils/Toast.dart';
 import 'package:flutterapp2/net/ResultData.dart';
@@ -13,6 +14,7 @@ import 'package:flutterapp2/wiget/basketball/basketballSf.dart';
 import 'package:flutterapp2/wiget/basketball/basketballrfSf.dart';
 import 'package:flutterapp2/wiget/basketball/basketbifen.dart';
 import 'package:flutterapp2/wiget/basketball/basketdxf.dart';
+import 'IndexPage.dart';
 import 'order.dart';
 class basketball extends StatefulWidget {
   @override
@@ -114,7 +116,7 @@ class _GZXDropDownMenuTestPageState extends State<basketball> {
         child: Container(
             decoration: BoxDecoration(color: Colors.white),
             child: ExpansionTile(
-              initiallyExpanded:true,
+
               title: Text(date+" 周"+num_to_cn[week]+" "+list_game.length.toString()+"场比赛可投"),
               children: <Widget>[
                 Container(
@@ -319,6 +321,7 @@ getComponent(p_status,p_goal,games,e2,e,zd_name,kd_name,mnl_odds,hdc_odds,dxf_od
       child: Scaffold(
 
         appBar: AppBar(
+
           centerTitle: true,
           elevation: 0,
           iconTheme: IconThemeData(
