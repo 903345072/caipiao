@@ -55,6 +55,7 @@ class Login_ extends State<register> {
      });
    }
   }
+  static TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(width: 417, height: 867)..init(context);
@@ -132,14 +133,7 @@ class Login_ extends State<register> {
                               nickname = e;
                             });
                           },
-                          controller: TextEditingController.fromValue(
-                              TextEditingValue(
-                                  text:
-                                  '${this.nickname == null ? "" : this.nickname}',
-                                  selection: TextSelection.fromPosition(
-                                      TextPosition(
-                                          affinity: TextAffinity.downstream,
-                                          offset: '${this.nickname}'.length)))),
+                          controller: _controller,
                           decoration: InputDecoration(
                             hintStyle: TextStyle(fontSize: ScreenUtil().setSp(13)),
                             border: OutlineInputBorder(),

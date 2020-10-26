@@ -123,7 +123,9 @@ class editCard_ extends State<editCard> {
       });
     }
   }
-
+  static TextEditingController _controller = TextEditingController();
+  static TextEditingController _controller2 = TextEditingController();
+  static TextEditingController _controller3 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(width: 417, height: 867)..init(context);
@@ -161,13 +163,35 @@ class editCard_ extends State<editCard> {
                     });
                   },
                 ),
-                IconInput(
-                  data: realName,
-                  callBack: (value) {
-                    setState(() {
-                      realName["value"] = value;
-                    });
-                  },
+                Container(
+                  height: ScreenUtil().setHeight(50),
+                  margin: EdgeInsets.only(left: 5, top: 15, right: 5),
+
+                  child: Row(
+                    children: <Widget>[
+
+                      Expanded(
+                        child: TextField(
+                          enabled: is_edit(realName),
+                          onChanged: (e) {
+                            setState(() {
+                              realName["value"] = e;
+                            });
+
+                          },
+                          controller: _controller,
+                          decoration: InputDecoration(
+                            hintStyle: TextStyle(fontSize: ScreenUtil().setSp(13)),
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.only(left: 10),
+                            hintText:realName["tip"],
+                            prefixIcon: realName["icon"],
+
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 IconInput(
                   data: idCard,
@@ -177,21 +201,65 @@ class editCard_ extends State<editCard> {
                     });
                   },
                 ),
-                IconInput(
-                  data: bankName,
-                  callBack: (value) {
-                    setState(() {
-                      bankName["value"] = value;
-                    });
-                  },
+                Container(
+                  height: ScreenUtil().setHeight(50),
+                  margin: EdgeInsets.only(left: 5, top: 15, right: 5),
+
+                  child: Row(
+                    children: <Widget>[
+
+                      Expanded(
+                        child: TextField(
+                          enabled: is_edit(bankName),
+                          onChanged: (e) {
+                            setState(() {
+                              bankName["value"] = e;
+                            });
+
+                          },
+                          controller: _controller3,
+                          decoration: InputDecoration(
+                            hintStyle: TextStyle(fontSize: ScreenUtil().setSp(13)),
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.only(left: 10),
+                            hintText:bankName["tip"],
+                            prefixIcon: bankName["icon"],
+
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-                IconInput(
-                  data: branchName,
-                  callBack: (value) {
-                    setState(() {
-                      branchName["value"] = value;
-                    });
-                  },
+                Container(
+                  height: ScreenUtil().setHeight(50),
+                  margin: EdgeInsets.only(left: 5, top: 15, right: 5),
+
+                  child: Row(
+                    children: <Widget>[
+
+                      Expanded(
+                        child: TextField(
+                          enabled: is_edit(branchName),
+                          onChanged: (e) {
+                            setState(() {
+                              branchName["value"] = e;
+                            });
+
+                          },
+                          controller: _controller2,
+                          decoration: InputDecoration(
+                            hintStyle: TextStyle(fontSize: ScreenUtil().setSp(13)),
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.only(left: 10),
+                            hintText:branchName["tip"],
+                            prefixIcon: branchName["icon"],
+
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 IconInput(
                   data: bankCard,
@@ -310,5 +378,16 @@ class editCard_ extends State<editCard> {
       return false;
     }
     return true;
+  }
+
+  bool is_edit(data){
+
+    if(data["is_edit"]){
+      return true;
+    }
+    if(!data["is_edit"] && (data['tag_value'] == null || data['tag_value'] == "")){
+      return true;
+    }
+    return false;
   }
 }

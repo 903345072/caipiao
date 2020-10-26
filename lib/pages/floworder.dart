@@ -65,6 +65,7 @@ class Login_ extends State<floworder> {
       child: Scaffold(
 
         appBar: AppBar(
+          leading: Text(''),
           centerTitle: true,
           elevation: 0,
           iconTheme: IconThemeData(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class IconInput extends StatefulWidget{
@@ -33,6 +34,10 @@ class _ChildState extends State<IconInput> {
 
               Expanded(
                 child: TextField(
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(RegExp(
+                        "[a-zA-Z]|[\u4e00-\u9fa5]|[0-9]")), //只能输入汉字或者字母或数字
+                  ],
                   keyboardType: getInputType(widget.data),
                   enabled: is_edit(widget.data),
                   onChanged: (e) {
@@ -80,6 +85,6 @@ class _ChildState extends State<IconInput> {
    if(data["type"] == "number"){
      return TextInputType.number;
    }
-   return null;
+   return TextInputType.text;
   }
 }
