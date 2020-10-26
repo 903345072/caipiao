@@ -108,6 +108,9 @@ class editCard_ extends State<editCard> {
         .get("user/card_info", withLoading: false);
     if (result.data["bank_info"] != null) {
       setState(() {
+        _controller.text = result.data["bank_info"]["real_name"];
+        _controller2.text = result.data["bank_info"]["bank_name"];
+        _controller3.text = result.data["bank_info"]["bank_branch"];
         phoneData["value"] = result.data["bank_info"]["phone"];
         phoneData["tag_value"] = result.data["bank_info"]["phone"];
         realName["value"] = result.data["bank_info"]["real_name"];
