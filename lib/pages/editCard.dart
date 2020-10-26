@@ -172,7 +172,6 @@ class editCard_ extends State<editCard> {
 
                       Expanded(
                         child: TextField(
-                          enabled: is_edit(realName),
                           onChanged: (e) {
                             setState(() {
                               realName["value"] = e;
@@ -210,7 +209,6 @@ class editCard_ extends State<editCard> {
 
                       Expanded(
                         child: TextField(
-                          enabled: is_edit(bankName),
                           onChanged: (e) {
                             setState(() {
                               bankName["value"] = e;
@@ -240,7 +238,6 @@ class editCard_ extends State<editCard> {
 
                       Expanded(
                         child: TextField(
-                          enabled: is_edit(branchName),
                           onChanged: (e) {
                             setState(() {
                               branchName["value"] = e;
