@@ -198,13 +198,16 @@ class Login_ extends State<recharge> {
                       setState(() {
                         is_show = false;
                       });
-                      ResultData res = await HttpManager.getInstance().post("recharge/wechat",params: {"price":yj,"type":pay_type,"from":"weixinh5"});
+                      Toast.toast(context,msg: "请求中...");
+                      ResultData res = await HttpManager.getInstance().post("recharge/wechat",params: {"price":yj,"type":pay_type,"from":"weixinh5"},withLoading: false);
+
                       Map data = jsonDecode(res.data["data"]);
-                      print(data["code"] == 200);
+
                       if(data["code"] == 200){
                         JumpAnimation().jump(pay(data["data"]), context);
                       }else{
-                        Toast.toast(context,msg: "支付通道异常,请联系客服");
+                        sleep(Duration(seconds: 1));
+                        Toast.toast(context,msg: data["data"],showTime: 2000);
                       }
                     }:null,
                     child: Text("立即充值",style: TextStyle(color: Colors.white),),

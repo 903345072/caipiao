@@ -45,6 +45,8 @@ class Login_ extends State<sendOrder> {
   double yj = 5;
   int start_money;
   int self_money;
+  String plan_title;
+  String plan_desc;
   @override
   void initState() {
     // TODO: implement initState
@@ -55,7 +57,8 @@ class Login_ extends State<sendOrder> {
       self_money = widget.num * 2 * widget.bei;
     });
   }
-
+  static TextEditingController _controller = TextEditingController();
+  static TextEditingController _controller1 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(width: 417, height: 867)..init(context);
@@ -63,6 +66,7 @@ class Login_ extends State<sendOrder> {
     // TODO: implement build
     return FlutterEasyLoading(
       child: Scaffold(
+        resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           centerTitle: true,
           elevation: 0,
@@ -272,6 +276,67 @@ class Login_ extends State<sendOrder> {
                    ),
                  ),
                  Divider(height: 20,),
+                 Container(
+
+                   margin: EdgeInsets.only(top: 15),
+                   child: Row(
+                     children: <Widget>[
+                       Container(
+                         margin: EdgeInsets.only(right: 15),
+                         child: Text("方案标题"),
+                       ),
+                       Expanded(
+                         child: TextField(
+
+                           onChanged: (e) {
+                             setState(() {
+                               plan_title = e;
+                             });
+
+                           },
+                           controller: _controller,
+                           decoration: InputDecoration(
+                             hintStyle: TextStyle(fontSize: ScreenUtil().setSp(13)),
+                             border: OutlineInputBorder(),
+                             contentPadding: EdgeInsets.only(left: 10),
+                             hintText:"请输入标题(20字以内)",
+                           ),
+                         ),
+                       )
+                     ],
+                   ),
+                 ),
+                 Divider(height: 20,),
+                 Container(
+
+                   margin: EdgeInsets.only(top: 15),
+                   child: Row(
+                     children: <Widget>[
+                       Container(
+                         margin: EdgeInsets.only(right: 15),
+                         child: Text("方案描述"),
+                       ),
+                       Expanded(
+                         child: TextField(
+
+                           onChanged: (e) {
+                             setState(() {
+                               plan_desc = e;
+                             });
+
+                           },
+                           controller: _controller1,
+                           decoration: InputDecoration(
+                             hintStyle: TextStyle(fontSize: ScreenUtil().setSp(13)),
+                             border: OutlineInputBorder(),
+                             contentPadding: EdgeInsets.only(left: 10),
+                             hintText:"最多可输入50字",
+                           ),
+                         ),
+                       )
+                     ],
+                   ),
+                 ),
                ],
              ),
            ),
@@ -311,7 +376,9 @@ class Login_ extends State<sendOrder> {
                              "bei": widget.bei,
                              "type": widget.type,
                              "start_money":start_money,
-                             "win_yj":yj
+                             "win_yj":yj,
+                             "plan_title":plan_title,
+                             "plan_desc":plan_desc
                            });
                            if (res.data["code"] == 200) {
                              JumpAnimation().jump(

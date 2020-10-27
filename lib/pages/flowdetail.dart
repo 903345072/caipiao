@@ -11,6 +11,8 @@ import 'package:flutterapp2/net/ResultData.dart';
 import 'package:flutterapp2/pages/IndexBack.dart';
 import 'package:flutterapp2/pages/IndexPage.dart';
 import 'package:flutterapp2/pages/Mine.dart';
+import 'package:flutterapp2/pages/flowUsers.dart';
+import 'package:flutterapp2/pages/order.dart';
 import 'package:flutterapp2/utils/EventDioLog.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
 import 'package:flutterapp2/utils/Rute.dart';
@@ -144,7 +146,18 @@ class Login_ extends State<flowdetail> {
                                 margin: EdgeInsets.only(right: 15),
                                 child: Text("跟单信息:"),
                               ),
-                              Text("共"+widget.data["all_amount"].toString()+"元",style: TextStyle(color: Colors.grey),)
+                              Text("共"+widget.data["all_amount"].toString()+"元",style: TextStyle(color: Colors.grey),),
+                              GestureDetector(
+                                onTap: (){
+                                  JumpAnimation().jump(flowUsers(order_id: widget.data["id"],), context);
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
+                                  margin: EdgeInsets.only(left: ScreenUtil().setWidth(120)),
+                                  decoration: BoxDecoration(color: Colors.red),
+                                  child: Text("跟单列表",style: TextStyle(color: Colors.white),),
+                                ),
+                              )
                             ],
                           ),
                         ),

@@ -13,6 +13,7 @@ import 'package:flutterapp2/pages/Mine.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
 import 'package:flutterapp2/utils/Rute.dart';
 import 'package:flutterapp2/utils/Toast.dart';
+import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../main.dart';
@@ -30,6 +31,7 @@ class Login_ extends State<kefu> {
   String new_pwd;
   String re_pwd;
   bool check = false;
+  String version;
   FocusNode _commentFocus;
 
   @override
@@ -37,8 +39,15 @@ class Login_ extends State<kefu> {
     // TODO: implement initState
     super.initState();
     _commentFocus = FocusNode();
+    getVersion();
   }
+getVersion() async {
+  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  setState(() {
+    version = packageInfo.version;
+  });
 
+}
   @override
   Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(width: 417, height: 867)..init(context);
@@ -100,7 +109,7 @@ class Login_ extends State<kefu> {
                       crossAxisAlignment:WrapCrossAlignment.center,
                       children: <Widget>[
                         Text("当前版本:"),
-                        Text("1.2.5"),
+                        Text(version),
 
                       ],
                     ),

@@ -18,6 +18,7 @@ import 'package:flutterapp2/utils/Toast.dart';
 import 'package:marquee_flutter/marquee_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../Sender.dart';
 import '../main.dart';
 
 class floworder extends StatefulWidget {
@@ -160,13 +161,19 @@ class Login_ extends State<floworder> {
                                               crossAxisAlignment: WrapCrossAlignment.center,
                                               direction: Axis.vertical,
                                               children: <Widget>[
-                                                ClipOval(
-                                                    child: Image.network(
-                                                      dashen[e]["avatar"],
-                                                      fit: BoxFit.fill,
-                                                      width: ScreenUtil().setWidth(55),
-                                                      height: ScreenUtil().setWidth(55),
-                                                    )),
+                                                GestureDetector(
+
+                                                  onTap: (){
+                                                    JumpAnimation().jump(Sender(uid: dashen[e]["uid"],), context);
+                                                  },
+                                                  child: ClipOval(
+                                                      child: Image.network(
+                                                        dashen[e]["avatar"],
+                                                        fit: BoxFit.fill,
+                                                        width: ScreenUtil().setWidth(55),
+                                                        height: ScreenUtil().setWidth(55),
+                                                      )),
+                                                ),
                                                 Text(dashen[e]["nickname"])
                                               ],
                                             );
@@ -234,13 +241,18 @@ class Login_ extends State<floworder> {
                   spacing: 5,
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: <Widget>[
-                    ClipOval(
-                        child: Image.network(
-                          list[e]["avatar"],
-                          fit: BoxFit.fill,
-                          width: ScreenUtil().setWidth(45),
-                          height: ScreenUtil().setWidth(45),
-                        )),
+                    GestureDetector(
+                      onTap: (){
+                        JumpAnimation().jump(Sender(uid: list[e]["uid"],), context);
+                      },
+                      child: ClipOval(
+                          child: Image.network(
+                            list[e]["avatar"],
+                            fit: BoxFit.fill,
+                            width: ScreenUtil().setWidth(45),
+                            height: ScreenUtil().setWidth(45),
+                          )),
+                    ),
                     Text(list[e]["nickname"]),
                   ],
                 ),
@@ -254,7 +266,7 @@ class Login_ extends State<floworder> {
             ),
             Container(
               margin: EdgeInsets.only(top: 5),
-              child: Text("跟我一起中大奖!!!"),
+              child: Text(list[e]["plan_title"].toString()),
             ),
              Container(
                margin: EdgeInsets.only(top: 5),
@@ -263,7 +275,7 @@ class Login_ extends State<floworder> {
                  children: <Widget>[
                    Container(
                      decoration: BoxDecoration(border: Border(right: BorderSide(width: 0.4,color: Colors.grey))),
-                     margin: EdgeInsets.only(top: 5),
+
                      child: Column(
                        children: <Widget>[
                          Container(
