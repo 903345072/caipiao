@@ -9,9 +9,11 @@ import 'package:flutterapp2/net/HttpManager.dart';
 import 'package:flutterapp2/net/ResultData.dart';
 import 'package:flutterapp2/pages/hangqing/StockRankList.dart';
 import 'package:flutterapp2/pages/myorder.dart';
+import 'package:flutterapp2/utils/JumpAnimation.dart';
 import 'package:flutterapp2/utils/request.dart';
 
 import 'ChildItemView.dart';
+import 'flowUsers.dart';
 class orderdetail extends StatefulWidget{
   int id;
   int type = 1;
@@ -109,6 +111,80 @@ class hangqing_ extends State<orderdetail>{
                       ],
                     ),
                   ),
+
+                  order["mode"] != "1"?Container(
+                    margin: EdgeInsets.only(top: 5,left: 5,bottom: 5),
+                    decoration: BoxDecoration(color:Colors.white,border: Border(bottom: BorderSide(width: 10,color: Color(0xfff5f5f5)))),
+
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(left: 5,top: 5),
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.mode_edit,color: Colors.grey,),
+                              Text("方案信息")
+                            ],
+                          ),
+                        ),
+                        Divider(),
+                        Container(
+                          margin: EdgeInsets.only(left: 30,top: 3),
+                          child: Row(
+
+
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(right: 15),
+                                child: Text("彩种:",style: TextStyle(letterSpacing: 8),),
+                              ),
+                              Text(order["type"]=="f"?"竞彩足球":"竞彩篮球",style: TextStyle(color: Colors.grey),)
+                            ],
+                          ),
+                        ),
+                        Divider(),
+                        Container(
+                          margin: EdgeInsets.only(left: 30,top: 3),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(right: 15),
+                                child: Text("跟单信息:"),
+                              ),
+                              Text("共"+order["all_amount"].toString()+"元",style: TextStyle(color: Colors.grey),),
+                              GestureDetector(
+                                onTap: (){
+                                  JumpAnimation().jump(flowUsers(order_id: order["id"],), context);
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
+                                  margin: EdgeInsets.only(left: ScreenUtil().setWidth(120)),
+                                  decoration: BoxDecoration(color: Colors.red),
+                                  child: Text("跟单列表",style: TextStyle(color: Colors.white),),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Divider(),
+                        Container(
+                          margin: EdgeInsets.only(left: 30,top: 3),
+                          child: Row(
+
+
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(right: 15),
+                                child: Text("状态:",style: TextStyle(letterSpacing: 8),),
+                              ),
+                              Text("开赛后可查看投注详情",style: TextStyle(color: Colors.red),)
+                            ],
+                          ),
+                        ),
+                        Divider(),
+                      ],
+                    ),
+                  ):Container(),
 
                   Container(
                     margin: EdgeInsets.only(top: 5,left: 5,bottom: 5),

@@ -71,12 +71,29 @@ class Login_ extends State<flowUsers> {
               color: Color(0xffe5e8e8),
               child: Wrap(
 
-                spacing: ScreenUtil().setWidth(50),
+
+                alignment: WrapAlignment.center,
                 children: <Widget>[
-                     Text("跟单用户"),
-                     Text("倍数"),
-                     Text("金额(元)"),
-                     Text("时间"),
+                     Container(
+                       alignment: Alignment.center,
+                       width: ScreenUtil().setWidth(100),
+                       child: Text("跟单用户"),
+                     ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: ScreenUtil().setWidth(100),
+                    child: Text("倍数"),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: ScreenUtil().setWidth(100),
+                    child: Text("金额(元)"),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: ScreenUtil().setWidth(100),
+                    child: Text("时间"),
+                  ),
                 ],
               ),
             ),
@@ -94,21 +111,34 @@ class Login_ extends State<flowUsers> {
       return Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
+            padding: EdgeInsets.only(top: 10,bottom: 10),
             width: double.infinity,
             child: Wrap(
-              alignment: WrapAlignment.spaceBetween,
+              alignment: WrapAlignment.center,
               children: <Widget>[
                 Container(
-
+                  alignment: Alignment.center,
+                  width: ScreenUtil().setWidth(100),
                   child: Text(data[e]["nickname"].toString()),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 5),
+                  alignment: Alignment.center,
+                  width: ScreenUtil().setWidth(100),
+
                   child: Text(data[e]["bei"].toString()),
                 ),
-                Text(data[e]["amount"],style: TextStyle(color: Colors.red),),
-                Text(data[e]["date"]),
+                Container(
+                  alignment: Alignment.center,
+                  width: ScreenUtil().setWidth(100),
+
+                  child: Text(data[e]["amount"].toString(),style: TextStyle(color: Colors.red),),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  width: ScreenUtil().setWidth(100),
+
+                  child: Text(data[e]["date"].toString()),
+                ),
               ],
             ),
           ),

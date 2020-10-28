@@ -150,10 +150,13 @@ class Login_ extends State<floworder> {
                                         ),
                                       ),
                                       Container(
-                                        margin: EdgeInsets.only(left: ScreenUtil().setWidth(25),right: ScreenUtil().setWidth(25)),
-                                        child: Wrap(
-                                          crossAxisAlignment: WrapCrossAlignment.center,
-                                          spacing: 40,
+                                        padding: EdgeInsets.only(left: 7),
+                                        alignment: Alignment.center,
+                                        width: double.infinity,
+                                        height: ScreenUtil().setHeight(240),
+                                        child: GridView.count(
+
+                                          crossAxisCount: 4,
                                           children: dashen.asMap().keys.map((e) {
                                             return Wrap(
 
@@ -174,12 +177,12 @@ class Login_ extends State<floworder> {
                                                         height: ScreenUtil().setWidth(55),
                                                       )),
                                                 ),
-                                                Text(dashen[e]["nickname"])
+                                                Text(dashen[e]["nickname"].toString().length>8?dashen[e]["nickname"].toString().substring(0,8):dashen[e]["nickname"].toString())
                                               ],
                                             );
-                                          }).toList(),
-                                        ),
+                                          }).toList(),),
                                       ),
+
                                       Container(
                                         height: ScreenUtil().setHeight(35),
                                         width: double.infinity,
