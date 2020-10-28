@@ -153,9 +153,8 @@ class Login_ extends State<floworder> {
                                         padding: EdgeInsets.only(left: 7),
                                         alignment: Alignment.center,
                                         width: double.infinity,
-                                        height: ScreenUtil().setHeight(240),
                                         child: GridView.count(
-
+                                          shrinkWrap: true,
                                           crossAxisCount: 4,
                                           children: dashen.asMap().keys.map((e) {
                                             return Wrap(
