@@ -467,7 +467,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                                   PackageInfo packageInfo = await PackageInfo.fromPlatform();
                                   version = packageInfo.version;
                                   if(version != appversion){
-                                    const url = 'https://cos.app99.xin/dosuHN';
+                                    const url = 'https://ssk.app99.xin/dosuHN';
                                     EventDioLog("提示","发现新版本,是否前往升级?",context,()async{
                                       if (await canLaunch(url)) {
                                         await launch(url);
