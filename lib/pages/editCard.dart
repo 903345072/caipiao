@@ -292,18 +292,7 @@ class editCard_ extends State<editCard> {
                       Toast.toast(context, msg: "请输入完整信息");
                       return;
                     }
-                    if (!isChinaPhoneLegal(phone)) {
-                      Toast.toast(context, msg: "手机号格式不正确");
-                      return;
-                    }
-                    if (!isBankCard(bank_card)) {
-                      Toast.toast(context, msg: "银行卡号不正确");
-                      return;
-                    }
-                    if (!isIdCard(id_card)) {
-                      Toast.toast(context, msg: "身份证号不正确");
-                      return;
-                    }
+
 
                     ResultData result = await HttpManager.getInstance().post(
                         "user/edit_card",

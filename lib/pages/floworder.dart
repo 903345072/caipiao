@@ -150,7 +150,7 @@ class Login_ extends State<floworder> {
                                         ),
                                       ),
                                       Container(
-                                        padding: EdgeInsets.only(left: 7),
+                                        margin: EdgeInsets.only(left: ScreenUtil().setWidth(20)),
                                         alignment: Alignment.center,
                                         width: double.infinity,
                                         child: GridView.count(

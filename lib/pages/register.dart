@@ -41,10 +41,13 @@ class Login_ extends State<register> {
 
   Timer _timer;
   int _timeCount = 60;
+  static TextEditingController _controller = TextEditingController();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _controller.text = "";
     getKey();
   }
   getKey() async {
@@ -55,7 +58,7 @@ class Login_ extends State<register> {
      });
    }
   }
-  static TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(width: 417, height: 867)..init(context);
@@ -64,7 +67,6 @@ class Login_ extends State<register> {
     return FlutterEasyLoading(
       child: Scaffold(
         appBar: AppBar(
-
           centerTitle: true,
           elevation: 0,
           iconTheme: IconThemeData(
@@ -83,14 +85,11 @@ class Login_ extends State<register> {
                 Container(
                   height: ScreenUtil().setHeight(50),
                   margin: EdgeInsets.only(left: 5, top: 25, right: 5),
-
                   child: Row(
                     children: <Widget>[
-
                       Expanded(
                         child: TextField(
                           keyboardType: TextInputType.number,
-
                           onChanged: (e) {
                             setState(() {
                               phone = e;
@@ -106,12 +105,9 @@ class Login_ extends State<register> {
                                           offset: '${this.phone}'.length)))),
                           decoration: InputDecoration(
                             hintStyle: TextStyle(fontSize: ScreenUtil().setSp(13)),
-
                             border: OutlineInputBorder(),
                             contentPadding: EdgeInsets.only(left: 10),
                             hintText: "请输入手机号",
-
-
                           ),
                         ),
                       )
@@ -131,6 +127,7 @@ class Login_ extends State<register> {
                           onChanged: (e) {
                             setState(() {
                               nickname = e;
+
                             });
                           },
                           controller: _controller,
