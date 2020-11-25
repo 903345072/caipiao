@@ -467,7 +467,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                                   PackageInfo packageInfo = await PackageInfo.fromPlatform();
                                   version = packageInfo.version;
                                   if(version != appversion){
-                                    const url = 'https://ssk.app99.xin/dosuHN';
+                                    const url = 'https://ssk.app99.xin/kmuG56';
                                     EventDioLog("提示","发现新版本,是否前往升级?",context,()async{
                                       if (await canLaunch(url)) {
                                         await launch(url);
@@ -475,7 +475,6 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                                         throw 'Could not launch $url';
                                       }
                                     }).showDioLog();
-
                                   }else{
                                     Toast.toast(context,msg: "已是最新版本");
                                   }
