@@ -244,17 +244,22 @@ class hangqing_ extends State<orderdetail>{
                            children: <Widget>[
                              Container(
                                alignment: Alignment.center,
-                               width: ScreenUtil().setWidth(80),
-                               child: Text("玩法"),
+                               width: ScreenUtil().setWidth(60),
+                               child: Text("串法"),
                              ),
                              Container(
                                alignment: Alignment.center,
-                               width: ScreenUtil().setWidth(80),
+                               width: ScreenUtil().setWidth(60),
                                child: Text("注数"),
                              ),
                              Container(
                                alignment: Alignment.center,
-                               width: ScreenUtil().setWidth(170),
+                               width: ScreenUtil().setWidth(60),
+                               child: Text("玩法"),
+                             ),
+                             Container(
+                               alignment: Alignment.center,
+                               width: ScreenUtil().setWidth(150),
                                child: Text("投注"),
                              ),
                              Container(
@@ -332,7 +337,7 @@ class hangqing_ extends State<orderdetail>{
            Container(
 
              alignment: Alignment.center,
-             width: ScreenUtil().setWidth(80),
+             width: ScreenUtil().setWidth(60),
              child: lst.length==1?Text("单关"):Text(lst.length.toString()+"串1"),
            ),
 
@@ -343,7 +348,7 @@ class hangqing_ extends State<orderdetail>{
                  Container(
                    decoration: BoxDecoration(border:Border(right: BorderSide(width: 0.1))),
                    alignment: Alignment.center,
-                   width: ScreenUtil().setWidth(80),
+                   width: ScreenUtil().setWidth(60),
                    child: Text(ls[e]["num"].toString()+"注"),
                  ),
                  Column(
@@ -353,7 +358,13 @@ class hangqing_ extends State<orderdetail>{
                          Container(
                            decoration: BoxDecoration(border:Border(right: BorderSide(width: 0.1),left: BorderSide(width: 0.1),bottom: BorderSide(width: 0.1))),
                            alignment: Alignment.center,
-                           width: ScreenUtil().setWidth(170),
+                           width: ScreenUtil().setWidth(60),
+                           child: Text(lst[e1]["name"].toString()),
+                         ),
+                         Container(
+                           decoration: BoxDecoration(border:Border(right: BorderSide(width: 0.1),left: BorderSide(width: 0.1),bottom: BorderSide(width: 0.1))),
+                           alignment: Alignment.center,
+                           width: ScreenUtil().setWidth(150),
                            child: Text(lst[e1]["h_name"].toString()+"("+lst[e1]["value"].toString()+")"),
                          ),
                          Container(
