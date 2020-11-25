@@ -112,20 +112,21 @@ class _ChildState extends State<feirangqiu> {
         onTap: () {
           Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
           String mid = widget.games[widget.e2][widget.e]["check_info"][0]["id"].toString();
+          String id = widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][e]["id"].toString();
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][e]["color"] == "co"){
 
-                attr.add(widget.spf[e]);
+                attr.add(id+"-"+widget.spf[e]);
 
 
             }else{
-              attr.remove(widget.spf[e]);
+              attr.remove(id+"-"+widget.spf[e]);
             }
             checks[mid] = attr;
           }else{
             List attr = [];
-            attr.add(widget.spf[e]);
+            attr.add(id+"-"+widget.spf[e]);
             checks[mid] = attr;
           }
           widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);

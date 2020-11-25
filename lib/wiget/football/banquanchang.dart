@@ -368,20 +368,21 @@ getScore(){
         onTap: () {
           Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
           String mid = widget.games[widget.e2][widget.e]["check_info"][4]["id"].toString();
+          String id = widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][e]["id"].toString();
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][e]["color"] == "co"){
 
-                attr.add(widget.half_odds[e]);
+                attr.add(id+"-"+widget.half_odds[e]);
 
 
             }else{
-              attr.remove(widget.half_odds[e]);
+              attr.remove(id+"-"+widget.half_odds[e]);
             }
             checks[mid] = attr;
           }else{
             List attr = [];
-            attr.add(widget.half_odds[e]);
+            attr.add(id+"-"+widget.half_odds[e]);
             checks[mid] = attr;
           }
           widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);

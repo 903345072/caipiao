@@ -29,6 +29,7 @@ class orderdetail extends StatefulWidget{
 class hangqing_ extends State<orderdetail>{
   Map game ={};
   Map order= {};
+  int chang;
   Map num_to_cn = {"1":"一","2":"二","3":"三","4":"四","5":"五","6":"六","7":"末"};
   @override
   void initState() {
@@ -192,7 +193,7 @@ class hangqing_ extends State<orderdetail>{
                       spacing: 5,
                       children: <Widget>[
                         Text("投注信息: "),
-                        Text(game.length.toString()+"场",style: TextStyle(color: Colors.red),),
+                        Text(getChang(),style: TextStyle(color: Colors.red),),
                         Text(order["bei"].toString()+"倍",style: TextStyle(color: Colors.red),),
                       ],
                     ),
@@ -206,7 +207,7 @@ class hangqing_ extends State<orderdetail>{
                       title: Text("选号详情",style: TextStyle(fontSize: 12),),
                       children: <Widget>[
 
-                        Container(
+                       order["mode"]!="4"?Container(
                           padding: EdgeInsets.only(left: ScreenUtil().setWidth(10),top: 5,bottom: 5),
                           decoration: BoxDecoration(color: Color(0xfffff5f8)),
                           width: ScreenUtil().setWidth(410),
@@ -234,11 +235,40 @@ class hangqing_ extends State<orderdetail>{
                               child: Text("彩果"),
                             )
                           ],
-                        ),),
+                        ),):Container(
+                         padding: EdgeInsets.only(top: 5,bottom: 5),
+                         decoration: BoxDecoration(color: Color(0xfffff5f8)),
+                         width: ScreenUtil().setWidth(410),
+                         child: Row(
+
+                           children: <Widget>[
+                             Container(
+                               alignment: Alignment.center,
+                               width: ScreenUtil().setWidth(80),
+                               child: Text("玩法"),
+                             ),
+                             Container(
+                               alignment: Alignment.center,
+                               width: ScreenUtil().setWidth(80),
+                               child: Text("注数"),
+                             ),
+                             Container(
+                               alignment: Alignment.center,
+                               width: ScreenUtil().setWidth(170),
+                               child: Text("投注"),
+                             ),
+                             Container(
+                               alignment: Alignment.center,
+                               width: ScreenUtil().setWidth(80),
+                               child: Text("赛果"),
+                             ),
+
+                           ],
+                         ),),
                         Container(
                           width: ScreenUtil().setWidth(410),
                           child: Column(
-                            children: getList(),
+                            children: order["mode"]!="4"? getList():getOptList(),
                           ),
                         )
                       ],
@@ -252,9 +282,8 @@ class hangqing_ extends State<orderdetail>{
                       children: <Widget>[
                         Text("下单时间:"+order["dtime"].toString()),
                         Text("订单编号:"+order["order_no"].toString()),
-                        order["chuan"].toString() != ""? Text("过关方式:"+order["chuan"].toString()+"串1"):Text("过关方式:单关"),
+                        order["chuan"]=="1"?Text("过关方式:单关"):order["chuan"].toString() != ""? Text("过关方式:"+order["chuan"].toString()+"串1"):Text("过关方式:单关"),
                         Text("温馨提示:"+"中奖后奖金自动打入您的账户"),
-
                       ],
                     ),
                   )
@@ -265,6 +294,91 @@ class hangqing_ extends State<orderdetail>{
         ],
       ),
     );
+  }
+  getChang(){
+    if(order["mode"] != "4"){
+      return game.length.toString()+"场";
+    }else{
+      List s = game["data"];
+      List s1 = [];
+      s.forEach((element) {
+        List s2 = element["bet_content"];
+        s2.forEach((element1) {
+          s1.add(element1["id"]);
+        });
+      });
+      var dedu = new Set();
+      dedu.addAll(s1);
+      s1 = dedu.toList();
+      return s1.length.toString()+"场";
+    }
+  }
+  List<Container> getOptList(){
+    print(game);
+    List ls = game["data"];
+   return ls.asMap().keys.map((e) {
+     List lst = ls[e]["bet_content"];
+     return Container(
+
+       alignment: Alignment.center,
+       decoration: BoxDecoration(border:Border(top: BorderSide(width: 0.1),right: BorderSide(width: 0.1),left: BorderSide(width: 0.1),bottom:BorderSide(width: 0.1))),
+
+       child: Row(
+
+         crossAxisAlignment: CrossAxisAlignment.center,
+
+         children: <Widget>[
+
+           Container(
+
+             alignment: Alignment.center,
+             width: ScreenUtil().setWidth(80),
+             child: lst.length==1?Text("单关"):Text(lst.length.toString()+"串1"),
+           ),
+
+           Container(
+             decoration: BoxDecoration(border:Border(left: BorderSide(width: 0.1))),
+             child: Row(
+               children: <Widget>[
+                 Container(
+                   decoration: BoxDecoration(border:Border(right: BorderSide(width: 0.1))),
+                   alignment: Alignment.center,
+                   width: ScreenUtil().setWidth(80),
+                   child: Text(ls[e]["num"].toString()+"注"),
+                 ),
+                 Column(
+                   children: lst.asMap().keys.map((e1){
+                     return Row(
+                       children: <Widget>[
+                         Container(
+                           decoration: BoxDecoration(border:Border(right: BorderSide(width: 0.1),left: BorderSide(width: 0.1),bottom: BorderSide(width: 0.1))),
+                           alignment: Alignment.center,
+                           width: ScreenUtil().setWidth(170),
+                           child: Text(lst[e1]["h_name"].toString()+"("+lst[e1]["value"].toString()+")"),
+                         ),
+                         Container(
+                           decoration: BoxDecoration(border:Border(right: BorderSide(width: 0.1),left: BorderSide(width: 0.1),bottom: BorderSide(width: 0.1))),
+                           alignment: Alignment.center,
+                           width: ScreenUtil().setWidth(79),
+                           child: Text(lst[e1]["caiguo"].toString(),style: TextStyle(color: lst[e1]["ret"]==0?Colors.black:Colors.red),),
+                         )
+                       ],
+                     );
+                   }).toList(),
+                 ),
+               ],
+             ),
+           ),
+
+
+
+
+         ],
+       ),
+     );
+   }).toList();
+
+    return [];
   }
  List getList(){
     String keys;
@@ -449,7 +563,12 @@ class hangqing_ extends State<orderdetail>{
     ResultData res = await HttpManager.getInstance().get("getOrderDetail",params: {"id":widget.id},withLoading: false);
 
     setState(() {
-      game = res.data["detail"];
+      if(res.data["detail"].length>0){
+        game = res.data["detail"];
+      }else{
+        game = {};
+      }
+
       order = res.data["order"];
     });
 

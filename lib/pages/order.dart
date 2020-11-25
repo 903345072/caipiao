@@ -8,11 +8,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp2/net/HttpManager.dart';
 import 'package:flutterapp2/net/ResultData.dart';
 import 'package:flutterapp2/pages/applyDaShen.dart';
+import 'package:flutterapp2/pages/awardOptimize.dart';
 import 'package:flutterapp2/pages/sendOrder.dart';
 import 'package:flutterapp2/pages/success.dart';
 import 'package:flutterapp2/utils/EventDioLog.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
 import 'package:flutterapp2/utils/Toast.dart';
+import 'package:flutterapp2/utils/model.dart';
 import 'package:flutterapp2/wiget/basketball/basketballMix.dart';
 import 'package:flutterapp2/wiget/basketball/basketballSf.dart';
 import 'package:flutterapp2/wiget/basketball/basketballrfSf.dart';
@@ -205,6 +207,9 @@ class order_ extends State<order> {
                                             onChanged: (e) {
                                               setState(() {
                                                 num = int.parse(e);
+                                                if(num <=1){
+                                                  num = 1;
+                                                }
                                               });
                                             },
                                             controller: TextEditingController
@@ -234,10 +239,160 @@ class order_ extends State<order> {
                                     ),
                                   ),
                                   Container(
+
                                     child: Text("倍"),
                                   )
                                 ],
-                              )
+                              ),
+                              widget.f_or_b == "f"?GestureDetector(
+                                onTap: (){
+                                  int check_length = chuan_.length;
+                                  if (widget.least_game > 1) {
+                                    if (check_length == 0) {
+                                      setState(() {
+                                        visible_ =
+                                        visible_ == true ? false : true;
+                                        is_pack =
+                                        is_pack == true ? false : true;
+                                      });
+                                      return;
+                                    }
+                                  }
+
+                                  if(getNum().length == 0){
+                                    Toast.toast(context,msg: "请选择比赛");
+                                    return;
+                                  }
+
+                                  List check_game = [];
+                                  widget.games.forEach((key, value) {
+                                    value.forEach((game) {
+                                      if (widget.game_ids
+                                          .contains(game["id"])) {
+                                        List ls1 = game["check_info"];
+                                        List attr = [];
+                                        ls1.forEach((element) {
+                                        List ls2 = element["bet_way"];
+
+                                          ls2.forEach((element2) {
+                                            if (element2["color"] == "red") {
+
+                                              String atr = element["id"]
+                                                    .toString() +
+                                                    "-" +
+                                                    element2["id"].toString();
+                                              Map pl_ =  jsonDecode(game["checks"]);
+
+                                              String pl;
+                                              pl_.forEach((key, value) {
+                                                List va = value;
+
+                                                if(element["id"].toString() == key.toString()){
+
+                                                  va.forEach((element3) {
+                                                    List vv = element3.toString().split("-");
+                                                    if(element2["id"].toString() == vv[0].toString()){
+                                                      pl = vv[1];
+                                                    }
+                                                  });
+                                                }
+                                              });
+
+
+                                              attr.add('{"pl":'+pl+',"name":"'+element["name"]+'","week":"'+game["num"]+'","value":"'+element2["value"]+'","h_name":"'+game["h_cn_a"].toString()+'","a_name":"'+game["a_cn_a"].toString()+'","id":'+game["id"].toString()+',"attr":"'+atr+'"}');
+                                            }
+
+                                          });
+                                        });
+                                        check_game.add(attr);
+                                      }
+                                    });
+                                  });
+                                  List s2 = [];
+
+                                 if(chuan_.length>0){
+                                   int index = 1;
+                                   List game_list = [];
+                                   chuan_.forEach((element5) {
+
+                                     game_list.add(plzh_(check_game, element5));
+                                   });
+
+                                   game_list.forEach((elements1) {
+                                     List ls2  = elements1;
+
+                                     ls2.forEach((elements2) {
+                                       List ls3 = cartesian_(elements2);
+
+
+                                       ls3.forEach((elements3) {
+                                         List ls1 = elements3.toString().split("&");
+                                         List ls4 = [];
+
+                                         ls1.forEach((elements4) {
+                                           ls4.add(jsonDecode(elements4));
+
+
+                                         });
+
+
+
+                                         s2.add({"data":ls4,"award":1.0,"base_award":1.0,"num":1,"is_show":true,"index":index});
+                                          index++;
+
+
+                                       });
+                                     });
+                                   });
+                                 }else{
+                                   int index = 1;
+                                   check_game.forEach((v1) {
+                                     List sl = v1;
+
+                                     sl.forEach((v2) {
+                                       s2.add({"data":[jsonDecode(v2)],"award":1.0,"base_award":1.0,"num":1,"is_show":true,"index":index});
+                                       index++;
+
+                                     });
+
+                                   });
+                                 }
+
+                                  List check_games = [];
+                                  widget.games.forEach((key, value) {
+                                    value.forEach((game) {
+                                      if (widget.game_ids
+                                          .contains(game["id"])) {
+                                        List ls1 = game["check_info"];
+                                        List attr = [];
+                                        ls1.forEach((element) {
+                                          List ls2 = element["bet_way"];
+                                          ls2.forEach((element2) {
+                                            if (element2["color"] == "red") {
+                                              attr.add({
+                                                "id": game["id"],
+                                                "attr": element["id"]
+                                                    .toString() +
+                                                    "-" +
+                                                    element2["id"].toString()
+                                              });
+                                            }
+                                          });
+                                        });
+                                        check_games.add(attr);
+                                      }
+                                    });
+                                  });
+                                  JumpAnimation().jump(awardOptimize(data: s2,money: int.parse(getMoney()),chuan: chuan_.length,game: check_games), context);
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.only(left: 10,right: 10),
+                                  decoration: BoxDecoration(color: Color(0xffcccccc)),
+                                  margin: EdgeInsets.only(left: ScreenUtil().setWidth(40)),
+                                  child: Text("奖金优化",style: TextStyle(color: Colors.white),),
+                                ),
+                              ):Container(),
                             ],
                           ),
                         ),
@@ -574,14 +729,22 @@ class order_ extends State<order> {
 
           maps.forEach((key1, value1) {
             List ls1 = value1;
-            //print(ls1);
-            ls1.sort((left, right) => left.compareTo(right));
+
+            ls1.sort((left, right){
+              List s1 = left.toString().split("-");
+              double l1 = double.parse(s1[1]);
+              List s2 = right.toString().split("-");
+              double l2 = double.parse(s2[1]);
+              return l1.compareTo(l2);
+            });
 
             if (ls1.length > 0) {
-              ls2.add(double.parse(ls1[ls1.length - 1]));
+              List zs = ls1[ls1.length - 1].toString().split("-");
+              ls2.add(double.parse(zs[1]));
             }
             ls1.forEach((element) {
-              ls.add(double.parse(element));
+              List zs2 = element.toString().split("-");
+              ls.add(double.parse(zs2[1]));
             });
           });
           zz.add(ls);
@@ -635,6 +798,7 @@ class order_ extends State<order> {
   }
 
   plzh(List arr, int size, {type = "a"}) {
+
     int len = arr.length;
     int max = pow(2, len);
     int min = pow(2, size) - 1;
@@ -669,6 +833,54 @@ class order_ extends State<order> {
     ;
 
     return arr_;
+  }
+
+
+  plzh_(List arr, int size, {type = "a"}) {
+    int len = arr.length;
+    int max = pow(2, len); //8    8
+    int min = pow(2, size) - 1; //3   3,4,5,6,7   7
+    List r_arr = [];
+    for (int i = min; i < max; i++) {
+      int count = 0;
+      List t_arr = [];
+      for (int j = 0; j < len; j++) {
+        int a = pow(2, j);
+        int t = i & a;
+        if (t == a) {
+          t_arr.add(arr[j]);
+          count++;
+        }
+      }
+      if (count == size) {
+        r_arr.add(t_arr);
+      }
+    }
+    return r_arr;
+  }
+
+  cartesian_(List sets) {
+    List arr = [];
+    String str = "";
+    for (int i = 0; i < sets.length - 1; i++) {
+      if (i == 0) {
+        arr = sets[i];
+      }
+      List tmp = [];
+
+      arr.forEach((element) {
+
+
+        List ls = sets[i + 1];
+        ls.forEach((element2) {
+          String str1 = jsonEncode(element).replaceAll("\\", "").indexOf('"')==0?jsonEncode(element).replaceAll("\\", "").replaceFirst('"', ""):jsonEncode(element).replaceAll("\\", "");
+          String str2 = jsonEncode(element2).replaceAll("\\", "").indexOf('"')==0?jsonEncode(element2).replaceAll("\\", "").replaceFirst('"', ""):jsonEncode(element2).replaceAll("\\", "");
+         tmp.add(element+"&"+element2);
+        });
+      });
+      arr = tmp;
+    }
+    return arr;
   }
 
   cartesian(List sets, int len) {

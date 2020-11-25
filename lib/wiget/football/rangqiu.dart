@@ -112,17 +112,18 @@ class _ChildState extends State<rangqiu> {
         onTap: () {
           Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
           String mid = widget.games[widget.e2][widget.e]["check_info"][1]["id"].toString();
+          String id = widget.games[widget.e2][widget.e]["check_info"][1]["bet_way"][e]["id"].toString();
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][1]["bet_way"][e]["color"] == "co"){
-                attr.add(widget.rqspf[e]);
+                attr.add(id+"-"+widget.rqspf[e]);
             }else{
-              attr.remove(widget.rqspf[e]);
+              attr.remove(id+"-"+widget.rqspf[e]);
             }
             checks[mid] = attr;
           }else{
             List attr = [];
-            attr.add(widget.rqspf[e]);
+            attr.add(id+"-"+widget.rqspf[e]);
             checks[mid] = attr;
           }
           widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);

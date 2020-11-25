@@ -215,7 +215,7 @@ class Login_ extends State<recharge> {
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 10),
-                  child: Text("提示:充值无手续分，最低充值1元"),
+                  child: Text("提示:充值无手续费，最低充值1元"),
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 10,bottom: 10),

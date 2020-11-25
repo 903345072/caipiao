@@ -616,20 +616,21 @@ class _ChildState extends State<mix> {
         onTap: () {
           Map checks = jsonDecode(widget.games[e2][e1]["checks"]);
           String mid = widget.games[e2][e1]["check_info"][1]["id"].toString();
+          int id = widget.games[e2][e1]["check_info"][1]["bet_way"][e]["id"];
          if(checks[mid] != null){
            List attr = checks[mid];
            if(widget.games[e2][e1]["check_info"][1]["bet_way"][e]["color"] == "co"){
 
-               attr.add(widget.rqspf[e]);
+               attr.add(id.toString()+"-"+widget.rqspf[e]);
 
 
            }else{
-             attr.remove(widget.rqspf[e]);
+             attr.remove(id.toString()+"-"+widget.rqspf[e]);
            }
            checks[mid] = attr;
          }else{
            List attr = [];
-           attr.add(widget.rqspf[e]);
+           attr.add(id.toString()+"-"+widget.rqspf[e]);
            checks[mid] = attr;
          }
 
@@ -708,20 +709,21 @@ class _ChildState extends State<mix> {
         onTap: () {
           Map checks = jsonDecode(widget.games[e2][e1]["checks"]);
           String mid = widget.games[e2][e1]["check_info"][0]["id"].toString();
+          String id = widget.games[e2][e1]["check_info"][0]["bet_way"][e]["id"].toString();
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[e2][e1]["check_info"][0]["bet_way"][e]["color"] == "co"){
 
-                attr.add(widget.spf[e]);
+                attr.add(id+"-"+widget.spf[e]);
 
 
             }else{
-              attr.remove(widget.spf[e]);
+              attr.remove(id+"-"+widget.spf[e]);
             }
             checks[mid] = attr;
           }else{
             List attr = [];
-            attr.add(widget.spf[e]);
+            attr.add(id+"-"+widget.spf[e]);
             checks[mid] = attr;
           }
           widget.games[e2][e1]["checks"] =  jsonEncode(checks);
@@ -799,20 +801,18 @@ class _ChildState extends State<mix> {
         onTap: () {
           Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
           String mid = widget.games[widget.e2][widget.e]["check_info"][0]["id"].toString();
+          String id = widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][e]["id"].toString();
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][0]["bet_way"][e]["color"] == "co"){
-
-                attr.add(widget.spf[e]);
-
-
+                attr.add(id+"-"+widget.spf[e]);
             }else{
-              attr.remove(widget.spf[e]);
+              attr.remove(id+"-"+widget.spf[e]);
             }
             checks[mid] = attr;
           }else{
             List attr = [];
-            attr.add(widget.spf[e]);
+            attr.add(id+"-"+widget.spf[e]);
             checks[mid] = attr;
           }
           widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);
@@ -870,19 +870,20 @@ class _ChildState extends State<mix> {
         onTap: () {
           Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
           String mid = widget.games[widget.e2][widget.e]["check_info"][1]["id"].toString();
+          String id = widget.games[widget.e2][widget.e]["check_info"][1]["bet_way"][e]["id"].toString();
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][1]["bet_way"][e]["color"] == "co"){
 
-                attr.add(widget.rqspf[e]);
+                attr.add(id+"-"+widget.rqspf[e]);
 
             }else{
-              attr.remove(widget.rqspf[e]);
+              attr.remove(id+"-"+widget.rqspf[e]);
             }
             checks[mid] = attr;
           }else{
             List attr = [];
-            attr.add(widget.rqspf[e]);
+            attr.add(id+"-"+widget.rqspf[e]);
             checks[mid] = attr;
           }
           widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);
@@ -940,19 +941,20 @@ class _ChildState extends State<mix> {
         onTap: () {
           Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
           String mid = widget.games[widget.e2][widget.e]["check_info"][4]["id"].toString();
+          String id = widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][e]["id"].toString();
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][e]["color"] == "co"){
 
-                attr.add(widget.half_odds[e]);
+                attr.add(id+"-"+widget.half_odds[e]);
 
             }else{
-              attr.remove(widget.half_odds[e]);
+              attr.remove(id+"-"+widget.half_odds[e]);
             }
             checks[mid] = attr;
           }else{
             List attr = [];
-            attr.add(widget.half_odds[e]);
+            attr.add(id+"-"+widget.half_odds[e]);
             checks[mid] = attr;
           }
           widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);
@@ -1027,17 +1029,18 @@ class _ChildState extends State<mix> {
         onTap: (){
           Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
           String mid = widget.games[widget.e2][widget.e]["check_info"][3]["id"].toString();
+          String id =  widget.games[widget.e2][widget.e]["check_info"][3]["bet_way"][e]["id"].toString();
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][3]["bet_way"][e]["color"] == "co"){
-                attr.add(widget.ttg_odds[e]);
+                attr.add(id+"-"+widget.ttg_odds[e]);
             }else{
-              attr.remove(widget.ttg_odds[e]);
+              attr.remove(id+"-"+widget.ttg_odds[e]);
             }
             checks[mid] = attr;
           }else{
             List attr = [];
-            attr.add(widget.ttg_odds[e]);
+            attr.add(id+"-"+widget.ttg_odds[e]);
             checks[mid] = attr;
           }
           widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);
@@ -1116,17 +1119,18 @@ class _ChildState extends State<mix> {
         onTap: (){
           Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
           String mid = widget.games[widget.e2][widget.e]["check_info"][2]["id"].toString();
+          String id = widget.games[widget.e2][widget.e]["check_info"][2]["bet_way"][e]["id"].toString();
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][2]["bet_way"][e]["color"] == "co"){
-                attr.add(widget.crs_win[e]);
+                attr.add(id+"-"+widget.crs_win[e]);
             }else{
-              attr.remove(widget.crs_win[e]);
+              attr.remove(id+"-"+widget.crs_win[e]);
             }
             checks[mid] = attr;
           }else{
             List attr = [];
-            attr.add(widget.crs_win[e]);
+            attr.add(id+"-"+widget.crs_win[e]);
             checks[mid] = attr;
           }
           widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);
