@@ -415,20 +415,21 @@ getScore(){
         onTap: (){
           Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
           String mid = widget.games[widget.e2][widget.e]["check_info"][2]["id"].toString();
+          String id = widget.games[widget.e2][widget.e]["check_info"][2]["bet_way"][e]["id"].toString();
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][2]["bet_way"][e]["color"] == "co"){
 
-                attr.add(widget.zs_sfc[e]);
+                attr.add(id+"-"+widget.zs_sfc[e]);
 
 
             }else{
-              attr.remove(widget.zs_sfc[e]);
+              attr.remove(id+"-"+widget.zs_sfc[e]);
             }
             checks[mid] = attr;
           }else{
             List attr = [];
-            attr.add(widget.zs_sfc[e]);
+            attr.add(id+"-"+widget.zs_sfc[e]);
             checks[mid] = attr;
           }
           widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);
@@ -502,20 +503,21 @@ getScore(){
         onTap: (){
           Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
           String mid = widget.games[widget.e2][widget.e]["check_info"][3]["id"].toString();
+          String id = widget.games[widget.e2][widget.e]["check_info"][3]["bet_way"][e]["id"].toString();
           if(checks[mid] != null){
             List attr = checks[mid];
             if(widget.games[widget.e2][widget.e]["check_info"][3]["bet_way"][e]["color"] == "co"){
 
-                attr.add(widget.ks_sfc[e]);
+                attr.add(id+"-"+widget.ks_sfc[e]);
 
 
             }else{
-              attr.remove(widget.ks_sfc[e]);
+              attr.remove(id+"-"+widget.ks_sfc[e]);
             }
             checks[mid] = attr;
           }else{
             List attr = [];
-            attr.add(widget.ks_sfc[e]);
+            attr.add(id+"-"+widget.ks_sfc[e]);
             checks[mid] = attr;
           }
           widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);

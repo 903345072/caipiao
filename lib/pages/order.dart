@@ -726,7 +726,7 @@ class order_ extends State<order> {
           List ls2 = [];
 
           Map maps = jsonDecode(game["checks"]);
-
+          print(maps);
           maps.forEach((key1, value1) {
             List ls1 = value1;
 
@@ -742,8 +742,10 @@ class order_ extends State<order> {
               List zs = ls1[ls1.length - 1].toString().split("-");
               ls2.add(double.parse(zs[1]));
             }
+
             ls1.forEach((element) {
               List zs2 = element.toString().split("-");
+
               ls.add(double.parse(zs2[1]));
             });
           });

@@ -113,20 +113,21 @@ getsfList(){
     onTap: () {
       Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
       String mid = widget.games[widget.e2][widget.e]["check_info"][4]["id"].toString();
+      String id = widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][0]["id"].toString();
       if(checks[mid] != null){
         List attr = checks[mid];
         if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][0]["color"] == "co"){
 
-            attr.add(widget.dxf[0]);
+            attr.add(id+"-"+widget.dxf[0]);
 
 
         }else{
-          attr.remove(widget.dxf[0]);
+          attr.remove(id+"-"+widget.dxf[0]);
         }
         checks[mid] = attr;
       }else{
         List attr = [];
-        attr.add(widget.dxf[0]);
+        attr.add(id+"-"+widget.dxf[0]);
         checks[mid] = attr;
       }
       widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);
@@ -183,20 +184,21 @@ getsfList(){
     onTap: () {
       Map checks = jsonDecode(widget.games[widget.e2][widget.e]["checks"]);
       String mid = widget.games[widget.e2][widget.e]["check_info"][4]["id"].toString();
+      String id = widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][1]["id"].toString();
       if(checks[mid] != null){
         List attr = checks[mid];
         if(widget.games[widget.e2][widget.e]["check_info"][4]["bet_way"][1]["color"] == "co"){
 
-            attr.add(widget.dxf[1]);
+            attr.add(id+"-"+widget.dxf[1]);
 
 
         }else{
-          attr.remove(widget.dxf[1]);
+          attr.remove(id+"-"+widget.dxf[1]);
         }
         checks[mid] = attr;
       }else{
         List attr = [];
-        attr.add(widget.dxf[1]);
+        attr.add(id+"-"+widget.dxf[1]);
         checks[mid] = attr;
       }
       widget.games[widget.e2][widget.e]["checks"] =  jsonEncode(checks);
