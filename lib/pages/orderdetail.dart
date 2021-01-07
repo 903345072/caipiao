@@ -219,11 +219,11 @@ class hangqing_ extends State<orderdetail>{
                               child: Text("场次"),
                             ),
                             Container(
-                              width: ScreenUtil().setWidth(105),
+                              width: ScreenUtil().setWidth(95),
                               child: order["type"] =="f"?Text("主队VS客队"):Text("客队VS主队"),
                             ),
                             Container(
-                              width: ScreenUtil().setWidth(65),
+                              width: ScreenUtil().setWidth(75),
                               child: Text("玩法"),
                             ),
                             Container(
@@ -446,10 +446,10 @@ class hangqing_ extends State<orderdetail>{
 
           Container(
             height: ScreenUtil().setHeight(height),
-            decoration: BoxDecoration(border:Border(right: BorderSide(width: 0.1))),
+
 
             alignment: Alignment.center,
-            width: ScreenUtil().setWidth(105),
+            width: ScreenUtil().setWidth(95),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -464,7 +464,6 @@ class hangqing_ extends State<orderdetail>{
 
             alignment: Alignment.center,
             child: Column(
-
               crossAxisAlignment: CrossAxisAlignment.start,
               children: getRow(s,height),
             ),
@@ -517,7 +516,7 @@ class hangqing_ extends State<orderdetail>{
        }
 
       return Container(
-        decoration: BoxDecoration(border:Border(bottom: BorderSide(width: 0.1))),
+        decoration: BoxDecoration(border:Border(bottom: BorderSide(width: 0.1),left: BorderSide(width: 0.1))),
         child: Row(
            crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -525,7 +524,7 @@ class hangqing_ extends State<orderdetail>{
 
 
               alignment: Alignment.center,
-              width: ScreenUtil().setWidth(65),
+              width: ScreenUtil().setWidth(75),
               child: Column(
                 children: <Widget>[
                   Text(e.toString()),
@@ -542,8 +541,8 @@ class hangqing_ extends State<orderdetail>{
                 children: ls.asMap().keys.map((e2){
 
                   return Container(
-                    decoration: BoxDecoration(border:Border(bottom: ls.length!=1?BorderSide(width: 0.1):BorderSide(width: 0.1),right: BorderSide(width: 0.1),left: BorderSide(width: 0.1))),
-                    height: ScreenUtil().setHeight(65),
+                    decoration: BoxDecoration(border:Border(right: BorderSide(width: 0.1),left: BorderSide(width: 0.1))),
+                    height: ScreenUtil().setHeight(75),
                     alignment: Alignment.center,
 
                     child: Column(

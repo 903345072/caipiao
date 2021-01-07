@@ -15,7 +15,7 @@ class basketdxf extends StatefulWidget {
   String kd_name;
   List dxf;
   List p_status;
-  String p_goal;
+  List p_goal;
   basketdxf(
       {Key key,
       this.callBack,
@@ -63,7 +63,7 @@ class _ChildState extends State<basketdxf> {
                     left: ScreenUtil().setWidth(35),
                     right: ScreenUtil().setWidth(35)),
                 child: Text(
-                  widget.p_goal,
+                  widget.p_goal[3],
                   style: TextStyle(fontSize: ScreenUtil().setSp(16),color: Colors.red),
                 ),
               ),
@@ -96,7 +96,8 @@ class _ChildState extends State<basketdxf> {
 
 
 getsfList(){
-  String status = widget.p_status[0];
+
+  String status = widget.p_status[3];
   if(status == "0"){
     return [Container(
       decoration: BoxDecoration(

@@ -94,7 +94,7 @@ class _ChildState extends State<rangqiu> {
     );
   }
    getrqList_() {
-    String status = widget.p_status[0];
+    String status = widget.p_status[1];
     if(status == "0"){
       return [Container(
         decoration: BoxDecoration(

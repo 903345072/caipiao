@@ -52,8 +52,16 @@ class Login_ extends State<floworder> {
    ResultData res = await HttpManager.getInstance().get("getFlowOrder",withLoading: false);
    ResultData res1 = await HttpManager.getInstance().get("zhongjiang",withLoading: false);
    setState(() {
-     list = res.data["data"];
-     dashen = res.data["dashen"];
+
+if(res.data["data"] != null){
+  list = res.data["data"];
+}
+     if(res.data["dashen"] != null){
+       dashen = res.data["dashen"];
+     }else{
+       dashen = [];
+     }
+
      zhongjiang = res1.data["data"];
    });
   }

@@ -14,7 +14,7 @@ class basketballMix extends StatefulWidget {
   String zd_name;
   String kd_name;
   List sf;
-  String p_goal;
+  List p_goal;
   List rfsf = ["0","0"];
   List zs_sfc;
   List ks_sfc;
@@ -185,18 +185,18 @@ class _ChildState extends State<basketballMix> {
                                                                       .grey),
                                                             ),
                                                             double.parse(widget
-                                                                .p_goal) >
+                                                                .p_goal[1]) >
                                                                 0
                                                                 ? Text(
                                                               widget
-                                                                  .p_goal,
+                                                                  .p_goal[1],
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .red),
                                                             )
                                                                 : Text(
                                                               widget
-                                                                  .p_goal,
+                                                                  .p_goal[1],
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .green),
@@ -1351,7 +1351,7 @@ getrfList_() {
           color: Colors.white,
           border: Border.all(width: 0.3, color: Colors.grey)),
       child: Text(
-        "主" + widget.p_goal,
+        "主" + widget.p_goal[1],
         style: TextStyle(color: Colors.grey),
       ),
     ),GestureDetector(

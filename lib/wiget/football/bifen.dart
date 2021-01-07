@@ -96,7 +96,8 @@ class _ChildState extends State<bifen> {
   }
 
 getScore(){
-  String status = widget.p_status[0];
+
+  String status = widget.p_status[2];
   if(status == "0"){
     return Container(
       decoration: BoxDecoration(
@@ -350,6 +351,7 @@ getScore(){
     );
   }
   getScoreList(state) {
+
     String status = widget.p_status[0];
     if(status == "0"){
       return [Container(

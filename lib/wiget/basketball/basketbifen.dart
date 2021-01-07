@@ -99,7 +99,7 @@ class _ChildState extends State<basketbifen> {
   }
 
 getScore(){
-  String status = widget.p_status[0];
+  String status = widget.p_status[2];
   if(status == "0"){
     return Container(
       decoration: BoxDecoration(

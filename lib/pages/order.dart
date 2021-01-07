@@ -726,7 +726,7 @@ class order_ extends State<order> {
           List ls2 = [];
 
           Map maps = jsonDecode(game["checks"]);
-          print(maps);
+
           maps.forEach((key1, value1) {
             List ls1 = value1;
 
@@ -1073,7 +1073,7 @@ class order_ extends State<order> {
       String ls_name = list_game_[e]["l_cn_abbr"];
       String zd_name = list_game_[e]["h_cn_abbr"];
       String kd_name = list_game_[e]["a_cn_abbr"];
-      String p_goal = list_game_[e]["p_goal"].toString();
+      List p_goal = list_game_[e]["p_goal"].toString().split(",");
       List p_status = list_game_[e]["p_status"].toString().split(",");
       List hdc_odds; //让分赔率
       List mnl_odds; //非让分赔率
@@ -1082,7 +1082,7 @@ class order_ extends State<order> {
       List wnm_win; //胜分差主胜赔率
       List wnm_lose; //胜分差客胜赔率
       if (list_game_[e]["type"] == 1) {
-        p_goal = list_game_[e]["p_goal"].toString().split(",")[1]; //让球个数
+
         dafen = list_game_[e]["p_goal"].toString().split(",")[3];
         dxf_odds = list_game_[e]["hilo_odds"].toString().split(","); //大小分赔率
         hdc_odds = list_game_[e]["hdc_odds"].toString().split(","); //让分赔率

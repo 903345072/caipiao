@@ -98,7 +98,7 @@ class _ChildState extends State<zongjinqiu> {
     );
   }
   getTotalList() {
-    String status = widget.p_status[0];
+    String status = widget.p_status[3];
     if(status == "0"){
       return [Container(
         decoration: BoxDecoration(

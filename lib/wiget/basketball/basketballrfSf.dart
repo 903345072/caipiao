@@ -15,7 +15,7 @@ class basketballrfSf extends StatefulWidget {
   String kd_name;
   List rfsf;
   List p_status;
-  String p_goal;
+  List p_goal;
 
   basketballrfSf(
       {Key key,
@@ -64,8 +64,8 @@ class _ChildState extends State<basketballrfSf> {
                     left: ScreenUtil().setWidth(35),
                     right: ScreenUtil().setWidth(35)),
                 child: Text(
-                  widget.p_goal,
-                  style: TextStyle(fontSize: ScreenUtil().setSp(16),color: double.parse(widget.p_goal)>0?Colors.red:Colors.green),
+                  widget.p_goal[1],
+                  style: TextStyle(fontSize: ScreenUtil().setSp(16),color: double.parse(widget.p_goal[1])>0?Colors.red:Colors.green),
                 ),
               ),
               Text(
@@ -97,7 +97,7 @@ class _ChildState extends State<basketballrfSf> {
 
 
 getsfList(){
-  String status = widget.p_status[0];
+  String status = widget.p_status[1];
   if(status == "0"){
     return [Container(
       decoration: BoxDecoration(
