@@ -97,7 +97,7 @@ class hangqing_ extends State<orderdetail>{
                           direction: Axis.vertical,
                           children: <Widget>[
                             Text("奖金"),
-                            Text(order["state"]==2?order["award_money"].toStringAsFixed(2):"--",style: TextStyle(color: Colors.red),),
+                            Text(order["state"]==2?(order["award_money"]-double.parse(order["jia_jiang"])).toStringAsFixed(2):"--",style: TextStyle(color: Colors.red),),
                           ],
                         ),
                         Wrap(
@@ -319,7 +319,6 @@ class hangqing_ extends State<orderdetail>{
     }
   }
   List<Container> getOptList(){
-    print(game);
     List ls = game["data"];
    return ls.asMap().keys.map((e) {
      List lst = ls[e]["bet_content"];
@@ -380,10 +379,6 @@ class hangqing_ extends State<orderdetail>{
                ],
              ),
            ),
-
-
-
-
          ],
        ),
      );
@@ -415,7 +410,7 @@ class hangqing_ extends State<orderdetail>{
          });
 
       });
-  int height = num*65;
+  int height = num*75;
 
     return  Container(
 
@@ -430,7 +425,7 @@ class hangqing_ extends State<orderdetail>{
 
               Container(
                 height: ScreenUtil().setHeight(height),
-                decoration: BoxDecoration(border:Border(right: BorderSide(width: 0.1))),
+
                 alignment: Alignment.center,
                 width: ScreenUtil().setWidth(60),
 
@@ -447,7 +442,7 @@ class hangqing_ extends State<orderdetail>{
           Container(
             height: ScreenUtil().setHeight(height),
 
-
+            decoration: BoxDecoration(border:Border(left: BorderSide(width: 0.1))),
             alignment: Alignment.center,
             width: ScreenUtil().setWidth(95),
             child: Column(
