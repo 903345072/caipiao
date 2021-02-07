@@ -69,6 +69,8 @@ class order_ extends State<order> {
   List chuan = [];
   int bot = 100;
 
+  @override
+
 
   @override
   void initState() {
@@ -95,6 +97,10 @@ class order_ extends State<order> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: IconButton( icon:Icon(Icons.arrow_back, color: Colors.white),color: Colors.white,onPressed: (){
+          widget.callBack(widget.games);
+          Navigator.pop(context);
+        },),
         centerTitle: true,
         backgroundColor: Color(0xfffa2020),
         title: Text("投注详情"),
@@ -785,6 +791,7 @@ class order_ extends State<order> {
     chuan_.forEach((element4) {
       plzh(zz, element4, type: "m");
       List lss = plzh(zz, element4);
+
       lss.forEach((element5) {
         List lss2 = element5;
         lss2.forEach((element6) {
@@ -794,7 +801,6 @@ class order_ extends State<order> {
         });
       });
     });
-
     ars.sort((left, right) => left.compareTo(right));
     return ars;
   }
