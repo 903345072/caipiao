@@ -50,6 +50,10 @@ class Login_ extends State<register> {
     _controller.text = "";
     getKey();
   }
+  @override
+  void dispose(){
+    this._timer.cancel();
+  }
   getKey() async {
    ResultData res =  await HttpManager.getInstance().get("verify_code",withLoading: false);
    if(res.code == 200){
@@ -384,8 +388,9 @@ class Login_ extends State<register> {
     return true;
   }
   static bool isChinaPhoneLegal(String str) {
+
     return new RegExp(
-        '^((13[0-9])|(15[^4])|(166)|(17[0-8])|(18[0-9])|(19[8-9])|(147,145))\\d{8}\$')
+        '^((13[0-9])|(15[^4])|(166)|(17[0-8])|(18[0-9])|(19[8-9])|(14[0-9]))\\d{8}\$')
         .hasMatch(str);
   }
   void ontap() async{
