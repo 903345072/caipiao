@@ -86,6 +86,9 @@ class order_ extends State<order> {
       chuan.add({"num": i + 1, "color": Colors.grey});
       i++;
     });
+    if(widget.least_game>=2){
+      chuan[1]["color"] = Colors.red;
+    }
 
   }
 

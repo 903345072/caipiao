@@ -139,9 +139,9 @@ class Login_ extends State<recharge> {
                              yj = int.parse(e);
                              int w = DateTime.now().weekday;
                              if(w == 6 || w == 7){
-                                rate = 0.04;
+                                rate = 0.08;
                              }else{
-                               rate = 0.03;
+                                rate = 0.08;
                              }
                              give_money = yj*rate;
                             });
