@@ -121,10 +121,7 @@ if(res.data["data"] != null){
                           Expanded(
                             child: ListView(
                               children: <Widget>[
-
                                 Container(
-
-
                                   margin: EdgeInsets.all(5),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -158,7 +155,6 @@ if(res.data["data"] != null){
                                         ),
                                       ),
                                       Container(
-                                        margin: EdgeInsets.only(left: ScreenUtil().setWidth(20)),
                                         alignment: Alignment.center,
                                         width: double.infinity,
                                         child: GridView.count(
@@ -169,6 +165,7 @@ if(res.data["data"] != null){
 
                                               spacing: 5,
                                               crossAxisAlignment: WrapCrossAlignment.center,
+                                              runAlignment: WrapAlignment.center,
                                               direction: Axis.vertical,
                                               children: <Widget>[
                                                 GestureDetector(

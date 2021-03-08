@@ -53,7 +53,7 @@ class Login_ extends State<flowdetail> {
     // TODO: implement build
     return FlutterEasyLoading(
       child: Scaffold(
-        resizeToAvoidBottomPadding: false,
+
 
         appBar: AppBar(
 
@@ -279,8 +279,6 @@ class Login_ extends State<flowdetail> {
                                 children: <Widget>[
                                   Expanded(
                                     child: TextField(
-
-
                                       //限制2长度],//只允许输入数字
                                       onChanged: (e) {
                                         setState(() {
