@@ -231,6 +231,10 @@ class Login_ extends State<recharge> {
                   margin: EdgeInsets.only(left: 10),
                   child: Text("2、为充值成功后，若金额未到账，请等待1-2分钟，或联系客服。",style: TextStyle(fontSize: 12),),
                 ),
+                Container(
+                  margin: EdgeInsets.only(left: 10),
+                  child: Text("3、转账时请务必填写正确的金额，存款才能秒到。",style: TextStyle(fontSize: 12),),
+                ),
 
               ],
             )
