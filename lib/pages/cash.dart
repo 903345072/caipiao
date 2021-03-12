@@ -40,9 +40,7 @@ class Login_ extends State<cash> {
   getUserInfo() async{
     ResultData res = await HttpManager.getInstance().get("userInfo",withLoading: false);
     setState(() {
-
-      now_money = double.parse(res.data["now_money"]);
-
+      now_money = double.parse(res.data["zhongjiang"]);
     });
   }
   @override
