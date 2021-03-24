@@ -420,6 +420,7 @@ getComponent(p_status,p_goal,games,e2,e,zd_name,kd_name,mnl_odds,hdc_odds,dxf_od
                                           List ls  = value;
                                           ls.forEach((element) {
                                             List e2 = element["check_info"];
+                                            element["checks"] = '{}';
                                             e2.forEach((element1) {
                                               List e3 = element1["bet_way"];
                                               e3.forEach((element2) {

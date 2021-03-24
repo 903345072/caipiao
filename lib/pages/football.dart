@@ -430,19 +430,24 @@ getComponent(p_status,p_goal,games,e2,e,zd_name,kd_name,spf,rqspf,crs_win,ttg_od
                                   GestureDetector(
                                     onTap: (){
                                       setState(() {
+
                                         games.forEach((key, value) {
                                           List ls  = value;
                                           ls.forEach((element) {
                                             List e2 = element["check_info"];
+
+                                            element["checks"] = '{}';
                                             e2.forEach((element1) {
                                               List e3 = element1["bet_way"];
                                               e3.forEach((element2) {
+
                                                 element2["color"] = "co";
                                               });
                                             });
                                           });
                                         });
                                       });
+
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(border: Border(right: BorderSide(color: Color(0xfff2f2f2),width: 0.5))),
