@@ -41,7 +41,7 @@ class Login_ extends State<sendOrder> {
   String re_pwd;
   bool check = false;
   double min_yj = 5;
-  double max_yj = 10;
+  double max_yj = 7;
   double yj = 5;
   int start_money;
   int self_money;

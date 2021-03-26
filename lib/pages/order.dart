@@ -675,16 +675,18 @@ class order_ extends State<order> {
 
     List sm = [];
     List lg = [];
+
     setState(() {
       min_max.removeWhere((key, value) => !chuan_.contains(key));
     });
-
     min_max.forEach((key, value) {
       List l1 = value;
       l1.forEach((element) {
         List l2 = element;
         if (l2.length > 0) {
-          lg.add(l2[l2.length - 1]);
+          l2.forEach((elementz) {
+            lg.add(elementz);
+          });
           sm.add(l2[0]);
         }
       });
@@ -733,9 +735,7 @@ class order_ extends State<order> {
         if (widget.game_ids.contains(game["id"])) {
           List ls = [];
           List ls2 = [];
-
           Map maps = jsonDecode(game["checks"]);
-
           maps.forEach((key1, value1) {
             List ls1 = value1;
 
@@ -746,15 +746,13 @@ class order_ extends State<order> {
               double l2 = double.parse(s2[1]);
               return l1.compareTo(l2);
             });
-
             if (ls1.length > 0) {
               List zs = ls1[ls1.length - 1].toString().split("-");
               ls2.add(double.parse(zs[1]));
             }
-
+           // print(ls1);
             ls1.forEach((element) {
               List zs2 = element.toString().split("-");
-
               ls.add(double.parse(zs2[1]));
             });
           });
@@ -805,6 +803,7 @@ class order_ extends State<order> {
       });
     });
     ars.sort((left, right) => left.compareTo(right));
+
     return ars;
   }
 
