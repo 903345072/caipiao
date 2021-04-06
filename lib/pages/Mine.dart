@@ -26,6 +26,7 @@ import 'package:flutterapp2/utils/Rute.dart';
 import 'package:flutterapp2/utils/Toast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'exchange.dart';
 import 'heyue.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:package_info/package_info.dart';
@@ -43,7 +44,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
   final SystemUiOverlayStyle _style =
       SystemUiOverlayStyle(statusBarColor: Colors.transparent);
 
-  Map user_info = {"nickname":"","has_bank":"0","now_money":"0","img_url":"http://kaifa.crmeb.net/uploads/attach/2019/08/20190807/723adbdd4e49a0f9394dfc700ab5dba3.png","zhongjiang":"0"};
+  Map user_info = {"nickname":"","award_amount":"0","has_bank":"0","now_money":"0","img_url":"http://kaifa.crmeb.net/uploads/attach/2019/08/20190807/723adbdd4e49a0f9394dfc700ab5dba3.png","zhongjiang":"0"};
   Map user_message_cate = {
     "account": "1000",
     "validContract": "12",
@@ -115,6 +116,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
        user_info["has_bank"] = res.data["has_bank"];
        user_info["img_url"] = res.data["avatar"];
        user_info["zhongjiang"] = res.data["zhongjiang"];
+       user_info["award_amount"] = res.data["award_amount"];
      }
 
    });
@@ -171,7 +173,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
               ),
               Container(
                 margin: EdgeInsets.only(
-                    top: ScreenUtil().setHeight(92), left: 10, right: 10),
+                    top: ScreenUtil().setHeight(50), left: 10, right: 10),
                 child: Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
                   direction: Axis.vertical,
@@ -211,37 +213,60 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                         ),
                       ),
                     ),
-                    Row(
-                      children: <Widget>[
-                        Container(
 
-                          child: Text(
-                            "￥ "+user_info["now_money"]+"元",
-                            style: TextStyle(
-                                color: Colors.white, fontSize: ScreenUtil().setSp(20)),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(left: 10),
-                          child: IconButton(
-                            onPressed: () async {
-                             Toast.toast(context,msg: "正在请求...");
-                              ResultData res = await HttpManager.getInstance().get("userInfo",withLoading: false);
-                              setState(() {
-                                if(res.data != null){
-                                  user_info["nickname"] = res.data["nickname"];
-                                  user_info["now_money"] = res.data["now_money"];
-                                  user_info["has_bank"] = res.data["has_bank"];
-                                  user_info["img_url"] = res.data["avatar"];
-                                }
+                   Container(
+                     margin: EdgeInsets.only(bottom: 8),
+                     child: Wrap(
+                       direction: Axis.vertical,
+                       children: <Widget>[
+                         Row(
+                           children: <Widget>[
+                             Container(
 
-                              });
-                            },
-                            icon: Icon(Icons.refresh,color: Colors.white,),
-                          ),
-                        )
-                      ],
-                    ),
+                               child: Text(
+                                 "￥ "+user_info["now_money"]+"元",
+                                 style: TextStyle(
+                                     color: Colors.white, fontSize: ScreenUtil().setSp(20)),
+                               ),
+                             ),
+                             Container(
+                               margin: EdgeInsets.only(left: 10),
+                               child: IconButton(
+                                 onPressed: () async {
+                                   Toast.toast(context,msg: "正在请求...");
+                                   ResultData res = await HttpManager.getInstance().get("userInfo",withLoading: false);
+                                   setState(() {
+                                     if(res.data != null){
+                                       user_info["nickname"] = res.data["nickname"];
+                                       user_info["now_money"] = res.data["now_money"];
+                                       user_info["has_bank"] = res.data["has_bank"];
+                                       user_info["img_url"] = res.data["avatar"];
+                                       user_info["award_amount"] = res.data["award_amount"];
+
+                                     }
+
+                                   });
+                                 },
+                                 icon: Icon(Icons.refresh,color: Colors.white,),
+                               ),
+                             )
+                           ],
+                         ),
+                         Row(
+                           children: <Widget>[
+                             Container(
+                               child: Text(
+                                 "奖池: ￥"+user_info["award_amount"]+"元",
+                                 style: TextStyle(
+                                     color: Colors.black87, fontSize: ScreenUtil().setSp(15)),
+                               ),
+                             ),
+                           ],
+                         ),
+                       ],
+                     ),
+                   ),
+
                     Wrap(
                       spacing: 25,
                       children: <Widget>[
@@ -290,7 +315,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                     ),
                     Container(
                       decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20))),
-                      height: ScreenUtil().setHeight(85),
+                      height: ScreenUtil().setHeight(75),
 
                       padding: EdgeInsets.only(left: ScreenUtil().setWidth(40),right: ScreenUtil().setWidth(40)),
                       margin: EdgeInsets.only(top: ScreenUtil().setHeight(25)),
@@ -344,10 +369,10 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                       ),
                     ),
                     Container(
-                      height: ScreenUtil().setHeight(85),
+                      height: ScreenUtil().setHeight(75),
                       width: ScreenUtil().setWidth(375),
                       padding: EdgeInsets.only(left: ScreenUtil().setWidth(40),right: ScreenUtil().setWidth(50)),
-                      margin: EdgeInsets.only(top: ScreenUtil().setHeight(25)),
+                      margin: EdgeInsets.only(top: ScreenUtil().setHeight(15)),
                       child:  Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -511,6 +536,40 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
 
                             ],
                           )
+                        ],
+                      ),
+                    ),
+
+                    Container(
+                      decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20))),
+                      height: ScreenUtil().setHeight(85),
+
+                      width: ScreenUtil().setWidth(375),
+                      padding: EdgeInsets.only(left: ScreenUtil().setWidth(40),right: ScreenUtil().setWidth(75)),
+
+                      child:  Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Wrap(
+                            spacing: 6,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                child: const Icon(Icons.swap_horiz,color: Colors.pinkAccent,size: 18,),
+
+                              ),
+                              GestureDetector(
+                                onTap: ()async{
+                                  JumpAnimation().jump(exchange(), context);
+                                },
+                                child: Container(
+                                  child: Text("账户划转",style: TextStyle(fontWeight: FontWeight.bold),),
+                                ),
+                              ),
+
+                            ],
+                          ),
+
                         ],
                       ),
                     ),
