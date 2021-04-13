@@ -100,7 +100,7 @@ class Login_ extends State<Login> {
                                       TextPosition(
                                           affinity: TextAffinity.downstream,
                                           offset: '${this.phone}'.length)))),
-                          keyboardType: TextInputType.number,
+
                           //键盘类型，数字键盘
 
                           decoration: InputDecoration(

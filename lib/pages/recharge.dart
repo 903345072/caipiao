@@ -17,6 +17,7 @@ import 'package:flutterapp2/utils/Rute.dart';
 import 'package:flutterapp2/utils/Toast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
 
 class recharge extends StatefulWidget {
@@ -111,6 +112,37 @@ class Login_ extends State<recharge> {
 
                                 ],
                               ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 10),
+                              width: ScreenUtil().setWidth(399),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Row(
+                                    children: <Widget>[
+                                      Image.asset("img/wxpay.jpg",fit: BoxFit.fill,width: ScreenUtil().setWidth(100),),
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text("微信快捷支付"),
+                                          Text("微信推荐,安全快捷",style: TextStyle(color: Colors.grey),),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  Radio(
+                                    value:1,
+                                    groupValue:this.pay_type,
+                                    onChanged:(v){
+                                      setState(() {
+                                        this.pay_type = v;
+                                      });
+                                    },
+                                  ),
+
+                                ],
+                              ),
                             )
                           ],
                         ),
@@ -184,6 +216,7 @@ class Login_ extends State<recharge> {
                     color: Colors.red,
                     onPressed: is_show?() async {
 
+
                       if(yj != null){
                         if(yj<1){
                           Toast.toast(context,msg: "请输入正确金额");
@@ -204,7 +237,18 @@ class Login_ extends State<recharge> {
                       Map data = jsonDecode(res.data["data"]);
 
                       if(data["code"] == 200){
-                        JumpAnimation().jump(pay(data["data"]), context);
+                        if(pay_type == 1){
+                        String url = data["url"];
+
+                          if (await canLaunch(url)) {
+                            await launch(url);
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        }else{
+                          JumpAnimation().jump(pay(data["data"]), context);
+                        }
+
                       }else{
                         sleep(Duration(seconds: 1));
                         Toast.toast(context,msg: data["data"],showTime: 2000);
